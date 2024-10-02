@@ -2,7 +2,7 @@
     
 **Estructura del documento principal:**
 
-# PRESENTACIÓN (Título/Nombre Proyecto)
+# PRESENTACIÓN (3D Bit Store)
 
 **Asignatura**: Bases de Datos I (FaCENA-UNNE)
 
