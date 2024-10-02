@@ -100,7 +100,7 @@ erDiagram USER |o--o{ MESSAGE : "sends" USER ||--|{ BILLING_ADDRESS : "has" USER
  Acceso (https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script_base_de_datos.sql)
 
 ### Diccionario de datos
-Acceso al documento [PDF]([https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/524fd8625e506f429b0b5eefbd2a18421e2cc817/doc/DiccionarioDeDatos.pdf) del diccionario de datos.
+Acceso al documento [PDF](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/524fd8625e506f429b0b5eefbd2a18421e2cc817/doc/DiccionarioDeDatos.pdf) del diccionario de datos.
 
 ### Documento con formato presentacion
 Se creo un documento con el formato de presentacion del proyecto. El mismo no contiene el Script de la Base de Datos ni el Diccionario del mismo.
@@ -183,7 +183,7 @@ Auditoría y control: Al tener roles definidos, se pueden auditar fácilmente la
 
 ### Casos de Uso
 
- 1.Caso de Uso: Administradores
+1.Caso de Uso: Administradores
 [Caso de Uso Administradores](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/casos%20de%20uso%20administrador.jpeg)
 
 2. Caso de Uso: Usuario no Registrado y Registrado
