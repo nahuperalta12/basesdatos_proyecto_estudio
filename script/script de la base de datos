@@ -83,19 +83,19 @@ CREATE TABLE Payment
 (
   payment_id INT NOT NULL,
   payment_date DATE NOT NULL,
-  status_id INT NOT NULL,
-  method_id INT NOT NULL,
-  PRIMARY KEY (payment_id),
-  FOREIGN KEY (status_id) REFERENCES Payment_status(status_id),
-  FOREIGN KEY (method_id) REFERENCES Payment_method(method_id)
+  id_status INT NOT NULL,
+  id_method INT NOT NULL,
+  ADD CONSTRAINT PK_payment_id PRIMARY KEY (payment_id),
+  ADD CONSTRAINT FK_status_FOREIGN KEY (status_id) REFERENCES Payment_status(status_id),
+  ADD CONSTRAINT FK_status_id_id_method FOREIGN KEY (id_method) REFERENCES Payment_method(id_method)
 );
 
 CREATE TABLE Province
 (
   province_id INT NOT NULL,
   id_country INT NOT NULL,
-  PRIMARY KEY (province_id, id_country),
-  FOREIGN KEY (id_country) REFERENCES Country(country_id)
+  ADD CONSTRAINT PK_province_id_id_country PRIMARY KEY (province_id, id_country),
+  ADD CONSTRAINT FK__province_id_id_country_id_country FOREIGN KEY (id_country) REFERENCES Country(country_id)
 );
 
 CREATE TABLE City
