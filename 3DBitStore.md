@@ -102,7 +102,7 @@ erDiagram USER |o--o{ MESSAGE : "sends" USER ||--|{ BILLING_ADDRESS : "has" USER
 
 ### Diccionario de datos
 
-Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
+Acceso al documento [PDF]([doc/diccionario_datos.pdf](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/DiccionarioDeDatos.pdf)) del diccionario de datos.
 
 
 ### Desarrollo TEMA 1 "----"
