@@ -40,7 +40,7 @@ CREATE TABLE Message
   mail_context VARCHAR(255) NOT NULL,
   read INT NOT NULL,
   reply INT NOT NULL,
-  id_user INT,
+  id_user INT, -- Se agrega como NULL por que usuarios sin registrar pueden dejar un mensaje
   PRIMARY KEY (message_id),
   FOREIGN KEY (id_user) REFERENCES User(user_id) ON DELETE CASCADE,  -- Borra mensajes si se elimina el usuario
   CONSTRAINT CK_Message_Read CHECK (read IN (0, 1)),  -- Solo valores 0 o 1 para "read"
