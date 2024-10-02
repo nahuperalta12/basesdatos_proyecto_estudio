@@ -86,29 +86,112 @@ Gestión de copias de seguridad: Aunque la base de datos está diseñada para se
  **b) Herramientas (Instrumentos y procedimientos)**
 
 
-
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
 
-
-
-
-### Diagrama conceptual (opcional)
-Ejemplo usando Live Editor https://mermaid.js.org/ (ejemplo opcional)
+### Diagrama conceptual
+Hecho usando: https://stackedit.io/app# 
 ```mermaid
 erDiagram USER |o--o{ MESSAGE : "sends" USER ||--|{ BILLING_ADDRESS : "has" USER ||--o{ SALE : "makes" SALE ||--|{ SALE_DETAIL : "includes" SALE_DETAIL ||--|| PRODUCT : "refers to" PRODUCT ||--|{ PRODUCT_IMAGE : "has" PRODUCT }|--|| PRODUCT_CATEGORY : "belongs to" PAYMENT ||--o{ SALE : "settles" PAYMENT }|--|| PAYMENT_STATUS : "has status" PAYMENT }|--|| PAYMENT_METHOD : "uses" BILLING_ADDRESS ||--o{ CITY : "located in" CITY }|--|| PROVINCE : "located in" PROVINCE }|--|| COUNTRY : "located in"
 ```
 ### Diagrama relacional
-![diagrama_relacional]()
+![diagrama_relacional](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/der%20del%20proyecto.png)
+
+### Script de la Base de Datos
+ Acceso (https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script_base_de_datos.sql)
 
 ### Diccionario de datos
-
 Acceso al documento [PDF]([doc/diccionario_datos.pdf](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/DiccionarioDeDatos.pdf)) del diccionario de datos.
 
+### Documento con formato presentacion
+Se creo un documento con el formato de presentacion del proyecto. El mismo no contiene el Script de la Base de Datos ni el Diccionario del mismo.
+Acceso al documento [PDF](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/proyecto_bdd1_grupo9.pdf)
+
+### Roles
+Se van a dividir los usuarios en tres grupos con diferentes niveles de acceso y funcionalidades, es decir, roles, los cuales son: usuarios no registrados, usuarios registrados, y administradores. 
+Los roles quedarían agrupados de la siguiente manera:
+
+1.Usuarios sin registrar (visitantes)
+Este rol tiene acceso limitado, puede ver productos y enviar consultas.
+Permisos:
+•	SELECT en la tabla Product: para ver productos.
+•	SELECT en la tabla Product_image: para ver las imágenes de los productos.
+•	SELECT en la tabla Product_category: para ver las categorías de los productos.
+•	INSERT en la tabla Message: para enviar consultas.
+
+2. Usuarios registrados
+Los usuarios registrados tienen más interacciones con la página, como agregar productos a un carrito, realizar compras, y ver el estado de sus transacciones.
+Acciones:
+•	Hacer todo lo que puede hacer un usuario sin registrar.
+•	Realizar compras y pagar.
+•	Ver el historial de compras y sus consultas.
+•	Rol en la base de datos: usuario_registrado_rol
+Este rol tiene permisos adicionales para realizar compras y ver el historial.
+Permisos:
+•	Permisos heredados de visitante_rol:
+o	SELECT en las tablas Product, Product_image, Product_category, Message.
+o	INSERT en la tabla Message.
+•	Permisos adicionales:
+o	SELECT en la tabla Sale: para ver su historial de compras.
+o	SELECT en la tabla Sale_detail: para ver los detalles de las compras.
+o	SELECT en la tabla Payment: para ver los métodos de pago.
+o	INSERT en la tabla Sale: para realizar compras.
+o	INSERT en la tabla Sale_detail: para añadir productos a la compra.
+o	SELECT en la tabla Message: para ver sus consultas anteriores.
+
+4. Administradores
+El administrador tiene un conjunto de permisos más amplios, ya que administra tanto los productos como a los usuarios y las consultas. Para no tener un usuario omnipotente, se dividirá este en varios subroles, dependiendo de las responsabilidades de cada administrador.
+Subroles de administrador:
+Admin de productos: Maneja la gestión de los productos, como agregar, editar, o dar de baja/alta productos.
+Admin de consultas: Lee y responde a las consultas de los usuarios.
+Admin de usuarios: Gestiona a los usuarios, da de alta/baja cuentas, y puede cambiar los roles de otros usuarios.
+Rol 1: admin_productos
+Este rol puede gestionar productos.
+
+Permisos:
+•	SELECT, INSERT, UPDATE, DELETE en las tablas:
+	Product: para gestionar productos.
+	Product_image: para gestionar las imágenes de los productos.
+	Product_category: para añadir o modificar categorías de productos.
+
+Rol 2: admin_consultas
+Este rol gestiona las consultas de usuarios y marca las consultas como leídas o respondidas.
+Permisos:
+•	SELECT, UPDATE en la tabla Message: para ver las consultas de los usuarios y marcarlas como leídas (read) o respondidas (reply).
+Rol 3: admin_usuarios
+Este rol puede gestionar usuarios y sus roles.
+Permisos:
+•	SELECT, INSERT, UPDATE, DELETE en la tabla User: para gestionar los usuarios.
+•	UPDATE en la tabla User: para actualizar roles y otros atributos de usuarios.
+•	SELECT en la tabla Message: para verificar consultas relacionadas a usuarios (si aplica).
+
+### Resumen de los Roles:
+visitante_rol: Acceso limitado, puede ver productos y enviar consultas.
+usuario_registrado_rol: Puede hacer todo lo que el visitante hace más gestionar su carrito, hacer compras y ver su historial.
+admin_productos: Gestiona productos.
+admin_consultas: Gestiona consultas de usuarios.
+admin_usuarios: Gestiona usuarios y roles.
+
+### Consideraciones teóricas:
+Modelo RBAC (Role-Based Access Control): Los roles y permisos se organizan con base en funciones organizacionales, permitiendo una asignación centralizada de permisos. Es una metodología eficiente para gestionar permisos en entornos complejos, evitando la asignación individual a cada usuario.
+Principio de privilegio mínimo: Cada rol debe tener los permisos mínimos necesarios para realizar sus tareas, reduciendo el riesgo de acciones no autorizadas. Por ejemplo, un "Usuario Libre" solo tiene acceso a datos públicos, mientras que un "Administrador de Productos" solo tiene acceso a la gestión de productos, sin poder alterar usuarios o datos sensibles.
+Separation of Duties (SoD): El administrador de productos no debe tener los mismos permisos que un administrador de usuarios o consultas, para prevenir abuso de poder y garantizar control interno.
+
+### Impacto en la Seguridad
+Principio de privilegios mínimos: Cada usuario solo tiene los permisos que necesita para realizar sus funciones, lo que minimiza el riesgo de accesos indebidos.
+Roles segmentados: Al dividir los roles de administrador en subroles, se reduce el riesgo de errores humanos o abuso de privilegios.
+Auditoría y control: Al tener roles definidos, se pueden auditar fácilmente las actividades de cada rol y detectar comportamientos sospechosos.
+
+### Casos de Uso
+
+ 1.Caso de Uso: Administradores
+[Caso de Uso Administradores](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/casos%20de%20uso%20administrador.jpeg)
+
+2. Caso de Uso: Usuario no Registrado y Registrado
+[Caso de Uso Usuarios](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/casos%20de%20uso%20usuario.jpeg)
 
 ### Desarrollo TEMA 1 "----"
 
 ### Desarrollo TEMA 2 "----"
-
 
 
 
