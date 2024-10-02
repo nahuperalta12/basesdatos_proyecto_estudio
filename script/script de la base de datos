@@ -129,10 +129,10 @@ CREATE TABLE Sale
   id_client INT NOT NULL,
   id_billing INT NOT NULL,
   payment_id INT NOT NULL,
-  PRIMARY KEY (sale_id),
-  FOREIGN KEY (id_client) REFERENCES User(user_id),
-  FOREIGN KEY (id_billing) REFERENCES Billing_address(billing_id),
-  FOREIGN KEY (payment_id) REFERENCES Payment(payment_id)
+  ADD CONSTRAINT PK_sale_id PRIMARY KEY (sale_id),
+  ADD CONSTRAINT FK_sale_id_id_client FOREIGN KEY (id_client) REFERENCES User(user_id),
+  ADD CONSTRAINT FK_sale_id_id_billing FOREIGN KEY (id_billing) REFERENCES Billing_address(billing_id),
+  ADD CONSTRAINT FK_sale_id_payment_id FOREIGN KEY (payment_id) REFERENCES Payment(payment_id)
 );
 
 CREATE TABLE Sale_detail
@@ -142,7 +142,7 @@ CREATE TABLE Sale_detail
   price_detail FLOAT NOT NULL,
   id_sale INT NOT NULL,
   id_product INT NOT NULL,
-  PRIMARY KEY (sale_detail_id),
-  FOREIGN KEY (id_sale) REFERENCES Sale(sale_id),
-  FOREIGN KEY (id_product) REFERENCES Product(product_id)
+  ADD CONSTRAINT PK_sale_detail_id PRIMARY KEY (sale_detail_id),
+  ADD CONSTRAINT FK_sale_detail_id_id_sale FOREIGN KEY (id_sale) REFERENCES Sale(sale_id),
+  ADD CONSTRAINT PK_sale_detail_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
 );
