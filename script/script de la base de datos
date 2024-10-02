@@ -41,20 +41,21 @@ CREATE TABLE Payment_method
 (
   method_id INT NOT NULL,
   method_name VARCHAR(25) NOT NULL,
-  PRIMARY KEY (method_id)
+  ADD CONSTRAINT PK_method_id PRIMARY KEY (method_id)
 );
 
 CREATE TABLE Payment_status
 (
   status_id INT NOT NULL,
   status_name VARCHAR(25) NOT NULL,
-  PRIMARY KEY (status_id)
+  ADD CONSTRAINT PK_status_id PRIMARY KEY (status_id)
 );
 
 CREATE TABLE Country
 (
   country_id INT NOT NULL,
-  PRIMARY KEY (country_id)
+  country_name VARCHAR(100) NOT NULL,
+  ADD CONSTRAINT PK_country_id PRIMARY KEY (country_id)
 );
 
 CREATE TABLE Product
@@ -66,8 +67,8 @@ CREATE TABLE Product
   sold_count INT NOT NULL,
   product_status INT NOT NULL,
   id_category INT NOT NULL,
-  PRIMARY KEY (product_id),
-  FOREIGN KEY (id_category) REFERENCES Product_category(category_id)
+  ADD CONSTRAINT PK_product_id PRIMARY KEY (product_id),
+  ADD CONSTRAINT FK_product_id_id_category FOREIGN KEY (id_category) REFERENCES Product_category(category_id)
 );
 
 CREATE TABLE Product_image
@@ -75,8 +76,8 @@ CREATE TABLE Product_image
   imagen_id INT NOT NULL,
   imagen_rute VARCHAR(255) NOT NULL,
   id_product INT NOT NULL,
-  PRIMARY KEY (imagen_id),
-  FOREIGN KEY (id_product) REFERENCES Product(product_id)
+  ADD CONSTRAINT PK_imagen_id PRIMARY KEY (imagen_id),
+  ADD CONSTRAINT FK_imagen_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
 );
 
 CREATE TABLE Payment
