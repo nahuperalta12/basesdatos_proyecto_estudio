@@ -1,31 +1,39 @@
+--CREATE DATABASE BDNegiCustom3D
+--USE BDNegiCustom3D
+
 CREATE TABLE User
 (
-  user_id INT IDENTITY NOT NULL,
-  username VARCHAR(50) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  name VARCHAR(50) NOT NULL,
-  surname VARCHAR(50) NOT NULL,
-  email VARCHAR(80) NOT NULL UNIQUE,
-  active INT NOT NULL CHECK (active IN (0, 1)),
-  usert_type INT NOT NULL CHECK (user_type IN (1, 2, 3)),
-  token_activation VARCHAR(100) NULL,
-  token_reset VARCHAR(100) NULL,
-  token_reset_expires_at NULL,
-  created_at DATE NOT NULL DEFAULT GETDATE(),
-  updated_at DATE NOT NULL DEFAULT GETDATE(),
-  PRIMARY KEY (user_id)
+  user_id INT IDENTITY(1,1) NOT NULL, -- ID auto-incremental para usuarios
+  username VARCHAR(50) NOT NULL, -- Nombre de usuario único
+  password VARCHAR(255) NOT NULL, -- Contraseña del usuario
+  name VARCHAR(50) NOT NULL,  -- Nombre del usuario
+  surname VARCHAR(50) NOT NULL, -- Apellido del usuario
+  email VARCHAR(80) NOT NULL, -- Email único del usuario
+  active INT NOT NULL, -- Indica si el usuario está activo (0 o 1)
+  user_type INT NOT NULL, -- Tipo de usuario
+  token_activation VARCHAR(100) NULL, -- Token de activación opcional
+  token_reset VARCHAR(100) NULL, -- Token de reseteo opcional
+  token_reset_expires_at NULL, -- Fecha de expiración del token de reseteo
+  created_at DATE NOT NULL DEFAULT GETDATE(), -- Fecha de creación por defecto actual
+  updated_at DATE NOT NULL DEFAULT GETDATE(), -- Fecha de última actualización
+  PRIMARY KEY (user_id), -- Clave Primaria
+  CONSTRAINT UQ_User_Username UNIQUE (username),  -- Constraint para username único
+  CONSTRAINT UQ_User_Email UNIQUE (email),        -- Constraint para email único
+  CONSTRAINT CK_User_Active CHECK (active IN (0, 1)),  -- Solo permite valores 0 o 1 para "active"
+  CONSTRAINT CK_User_Type CHECK (user_type IN (1, 2, 3, 4)) -- Valores permitidos para "user_type" 
 );
 
 CREATE TABLE Product_category
 (
   category_id INT NOT NULL,
   category_description VARCHAR(100) NOT NULL,
-  PRIMARY KEY (category_id)
+  PRIMARY KEY (category_id),
+  CONSTRAINT UQ_Product_Category UNIQUE (category_description)  -- La descripción debe ser única
 );
 
 CREATE TABLE Message
 (
-  message_id INT NOT NULL,
+  message_id INT IDENTITY(1,1) NOT NULL,
   message_name VARCHAR(80) NOT NULL,
   message_mail VARCHAR(80) NOT NULL,
   mail_subject VARCHAR(100) NOT NULL,
@@ -34,32 +42,36 @@ CREATE TABLE Message
   reply INT NOT NULL,
   id_user INT NOT NULL,
   PRIMARY KEY (message_id),
-  FOREIGN KEY (id_user) REFERENCES User(user_id)
+  FOREIGN KEY (id_user) REFERENCES User(user_id) ON DELETE CASCADE,  -- Borra mensajes si se elimina el usuario
+  CONSTRAINT CK_Message_Read CHECK (read IN (0, 1)),  -- Solo valores 0 o 1 para "read"
+  CONSTRAINT CK_Message_Reply CHECK (reply IN (0, 1)) -- Solo valores 0 o 1 para "reply"
 );
 
 CREATE TABLE Payment_method
 (
-  method_id INT NOT NULL,
+  method_id INT IDENTITY(1,1) NOT NULL,
   method_name VARCHAR(25) NOT NULL,
-  PRIMARY KEY (method_id)
+  PRIMARY KEY (method_id),
+  CONSTRAINT UQ_Payment_Method UNIQUE (method_name)  -- Nombre del método debe ser único
 );
 
 CREATE TABLE Payment_status
 (
-  status_id INT NOT NULL,
+  status_id INT IDENTITY(1,1) NOT NULL,
   status_name VARCHAR(25) NOT NULL,
-  PRIMARY KEY (status_id)
+  PRIMARY KEY (status_id),
+  CONSTRAINT UQ_Payment_Status UNIQUE (status_name)  -- Nombre del estado debe ser único
 );
 
 CREATE TABLE Country
 (
-  country_id INT NOT NULL,
+  country_id INT IDENTITY(1,1) NOT NULL,
   PRIMARY KEY (country_id)
 );
 
 CREATE TABLE Product
 (
-  product_id INT NOT NULL,
+  product_id INT IDENTITY(1,1) NOT NULL,
   product_name VARCHAR(100) NOT NULL,
   product_description VARCHAR(255) NOT NULL,
   product_price FLOAT NOT NULL,
@@ -72,7 +84,7 @@ CREATE TABLE Product
 
 CREATE TABLE Product_image
 (
-  imagen_id INT NOT NULL,
+  imagen_id INT IDENTITY(1,1) NOT NULL,
   imagen_rute VARCHAR(255) NOT NULL,
   id_product INT NOT NULL,
   PRIMARY KEY (imagen_id),
@@ -81,7 +93,7 @@ CREATE TABLE Product_image
 
 CREATE TABLE Payment
 (
-  payment_id INT NOT NULL,
+  payment_id INT IDENTITY(1,1) NOT NULL,
   payment_date DATE NOT NULL,
   id_status INT NOT NULL,
   id_method INT NOT NULL,
@@ -92,7 +104,7 @@ CREATE TABLE Payment
 
 CREATE TABLE Province
 (
-  province_id INT NOT NULL,
+  province_id INT IDENTITY(1,1) NOT NULL,
   id_country INT NOT NULL,
   ADD CONSTRAINT PK_province_id_id_country PRIMARY KEY (province_id, id_country),
   ADD CONSTRAINT FK__province_id_id_country_id_country FOREIGN KEY (id_country) REFERENCES Country(country_id)
@@ -100,7 +112,7 @@ CREATE TABLE Province
 
 CREATE TABLE City
 (
-  city_id INT NOT NULL,
+  city_id INT IDENTITY(1,1) NOT NULL,
   postal_code VARCHAR(20) NOT NULL,
   id_province INT NOT NULL,
   id_country INT NOT NULL,
@@ -110,7 +122,7 @@ CREATE TABLE City
 
 CREATE TABLE Billing_address
 (
-  billing_id INT NOT NULL,
+  billing_id INT IDENTITY(1,1) NOT NULL,
   address_line1 VARCHAR(255) NOT NULL,
   adress_line2 VARCHAR(255) NOT NULL,
   created_at DATE NOT NULL,
@@ -124,7 +136,7 @@ CREATE TABLE Billing_address
 
 CREATE TABLE Sale
 (
-  sale_id INT NOT NULL,
+  sale_id INT IDENTITY(1,1) NOT NULL,
   sale_date DATE NOT NULL,
   id_client INT NOT NULL,
   id_billing INT NOT NULL,
@@ -137,7 +149,7 @@ CREATE TABLE Sale
 
 CREATE TABLE Sale_detail
 (
-  sale_detail_id INT NOT NULL,
+  sale_detail_id INT IDENTITY(1,1) NOT NULL,
   quantity_detail INT NOT NULL,
   price_detail FLOAT NOT NULL,
   id_sale INT NOT NULL,
