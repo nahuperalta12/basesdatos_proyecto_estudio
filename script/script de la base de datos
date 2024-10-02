@@ -104,8 +104,8 @@ CREATE TABLE City
   postal_code VARCHAR(20) NOT NULL,
   id_province INT NOT NULL,
   id_country INT NOT NULL,
-  PRIMARY KEY (city_id, id_province, id_country),
-  FOREIGN KEY (id_province, id_country) REFERENCES Province(province_id, id_country)
+  ADD CONSTRAINT PK_city_id_id_province_id_country PRIMARY KEY (city_id, id_province, id_country),
+  ADD CONSTRAINT FK_city_id_id_province_id_country FOREIGN KEY (id_province, id_country) REFERENCES Province(province_id, id_country)
 );
 
 CREATE TABLE Billing_address
@@ -118,8 +118,8 @@ CREATE TABLE Billing_address
   id_city INT NOT NULL,
   id_province INT NOT NULL,
   id_country INT NOT NULL,
-  PRIMARY KEY (billing_id),
-  FOREIGN KEY (id_city, id_province, id_country) REFERENCES City(city_id, id_province, id_country)
+  ADD CONSTRAINT PK_billing_id PRIMARY KEY (billing_id),
+  ADD CONSTRAINT FK_billing_id_id_city_id_province_id_country FOREIGN KEY (id_city, id_province, id_country) REFERENCES City(city_id, id_province, id_country)
 );
 
 CREATE TABLE Sale
