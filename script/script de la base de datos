@@ -52,7 +52,8 @@ CREATE TABLE Payment_method
   method_id INT IDENTITY(1,1) NOT NULL,
   method_name VARCHAR(25) NOT NULL,
   PRIMARY KEY (method_id),
-  CONSTRAINT UQ_Payment_Method UNIQUE (method_name)  -- Nombre del método debe ser único
+  CONSTRAINT UQ_Payment_Method UNIQUE (method_name),  -- Nombre del método debe ser único
+  CONSTRAINT PK_method_id PRIMARY KEY (method_id)
 );
 
 CREATE TABLE Payment_status
@@ -60,13 +61,17 @@ CREATE TABLE Payment_status
   status_id INT IDENTITY(1,1) NOT NULL,
   status_name VARCHAR(25) NOT NULL,
   PRIMARY KEY (status_id),
-  CONSTRAINT UQ_Payment_Status UNIQUE (status_name)  -- Nombre del estado debe ser único
+  CONSTRAINT UQ_Payment_Status UNIQUE (status_name),  -- Nombre del estado debe ser único
+  CONSTRAINT PK_status_id PRIMARY KEY (status_id)
 );
 
 CREATE TABLE Country
 (
   country_id INT IDENTITY(1,1) NOT NULL,
-  PRIMARY KEY (country_id)
+  PRIMARY KEY (country_id),
+  country_id INT NOT NULL,
+  country_name VARCHAR(100) NOT NULL,
+  CONSTRAINT PK_country_id PRIMARY KEY (country_id)
 );
 
 CREATE TABLE Product
@@ -78,8 +83,8 @@ CREATE TABLE Product
   sold_count INT NOT NULL,
   product_status INT NOT NULL,
   id_category INT NOT NULL,
-  PRIMARY KEY (product_id),
-  FOREIGN KEY (id_category) REFERENCES Product_category(category_id)
+  CONSTRAINT PK_product_id PRIMARY KEY (product_id),
+  CONSTRAINT FK_product_id_id_category FOREIGN KEY (id_category) REFERENCES Product_category(category_id)
 );
 
 CREATE TABLE Product_image
@@ -87,8 +92,8 @@ CREATE TABLE Product_image
   imagen_id INT IDENTITY(1,1) NOT NULL,
   imagen_rute VARCHAR(255) NOT NULL,
   id_product INT NOT NULL,
-  PRIMARY KEY (imagen_id),
-  FOREIGN KEY (id_product) REFERENCES Product(product_id)
+  CONSTRAINT PK_imagen_id PRIMARY KEY (imagen_id),
+  CONSTRAINT FK_imagen_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
 );
 
 CREATE TABLE Payment
@@ -97,17 +102,17 @@ CREATE TABLE Payment
   payment_date DATE NOT NULL,
   id_status INT NOT NULL,
   id_method INT NOT NULL,
-  ADD CONSTRAINT PK_payment_id PRIMARY KEY (payment_id),
-  ADD CONSTRAINT FK_status_FOREIGN KEY (status_id) REFERENCES Payment_status(status_id),
-  ADD CONSTRAINT FK_status_id_id_method FOREIGN KEY (id_method) REFERENCES Payment_method(id_method)
+  CONSTRAINT PK_payment_id PRIMARY KEY (payment_id),
+  CONSTRAINT FK_status_FOREIGN KEY (status_id) REFERENCES Payment_status(status_id),
+  CONSTRAINT FK_status_id_id_method FOREIGN KEY (id_method) REFERENCES Payment_method(id_method)
 );
 
 CREATE TABLE Province
 (
   province_id INT IDENTITY(1,1) NOT NULL,
   id_country INT NOT NULL,
-  ADD CONSTRAINT PK_province_id_id_country PRIMARY KEY (province_id, id_country),
-  ADD CONSTRAINT FK__province_id_id_country_id_country FOREIGN KEY (id_country) REFERENCES Country(country_id)
+  CONSTRAINT PK_province_id_id_country PRIMARY KEY (province_id, id_country),
+  CONSTRAINT FK__province_id_id_country_id_country FOREIGN KEY (id_country) REFERENCES Country(country_id)
 );
 
 CREATE TABLE City
@@ -116,8 +121,8 @@ CREATE TABLE City
   postal_code VARCHAR(20) NOT NULL,
   id_province INT NOT NULL,
   id_country INT NOT NULL,
-  ADD CONSTRAINT PK_city_id_id_province_id_country PRIMARY KEY (city_id, id_province, id_country),
-  ADD CONSTRAINT FK_city_id_id_province_id_country FOREIGN KEY (id_province, id_country) REFERENCES Province(province_id, id_country)
+  CONSTRAINT PK_city_id_id_province_id_country PRIMARY KEY (city_id, id_province, id_country),
+  CONSTRAINT FK_city_id_id_province_id_country FOREIGN KEY (id_province, id_country) REFERENCES Province(province_id, id_country)
 );
 
 CREATE TABLE Billing_address
@@ -130,8 +135,8 @@ CREATE TABLE Billing_address
   id_city INT NOT NULL,
   id_province INT NOT NULL,
   id_country INT NOT NULL,
-  ADD CONSTRAINT PK_billing_id PRIMARY KEY (billing_id),
-  ADD CONSTRAINT FK_billing_id_id_city_id_province_id_country FOREIGN KEY (id_city, id_province, id_country) REFERENCES City(city_id, id_province, id_country)
+  CONSTRAINT PK_billing_id PRIMARY KEY (billing_id),
+  CONSTRAINT FK_billing_id_id_city_id_province_id_country FOREIGN KEY (id_city, id_province, id_country) REFERENCES City(city_id, id_province, id_country)
 );
 
 CREATE TABLE Sale
@@ -141,10 +146,10 @@ CREATE TABLE Sale
   id_client INT NOT NULL,
   id_billing INT NOT NULL,
   id_payment INT NOT NULL,
-  ADD CONSTRAINT PK_sale_id PRIMARY KEY (sale_id),
-  ADD CONSTRAINT FK_sale_id_id_client FOREIGN KEY (id_client) REFERENCES User(user_id),
-  ADD CONSTRAINT FK_sale_id_id_billing FOREIGN KEY (id_billing) REFERENCES Billing_address(billing_id),
-  ADD CONSTRAINT FK_sale_id_id_payment FOREIGN KEY (id_payment) REFERENCES Payment(id_payment)
+  CONSTRAINT PK_sale_id PRIMARY KEY (sale_id),
+  CONSTRAINT FK_sale_id_id_client FOREIGN KEY (id_client) REFERENCES User(user_id),
+  CONSTRAINT FK_sale_id_id_billing FOREIGN KEY (id_billing) REFERENCES Billing_address(billing_id),
+  CONSTRAINT FK_sale_id_id_payment FOREIGN KEY (id_payment) REFERENCES Payment(id_payment)
 );
 
 CREATE TABLE Sale_detail
@@ -154,7 +159,7 @@ CREATE TABLE Sale_detail
   price_detail FLOAT NOT NULL,
   id_sale INT NOT NULL,
   id_product INT NOT NULL,
-  ADD CONSTRAINT PK_sale_detail_id PRIMARY KEY (sale_detail_id),
-  ADD CONSTRAINT FK_sale_detail_id_id_sale FOREIGN KEY (id_sale) REFERENCES Sale(sale_id),
-  ADD CONSTRAINT PK_sale_detail_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
+  CONSTRAINT PK_sale_detail_id PRIMARY KEY (sale_detail_id),
+  CONSTRAINT FK_sale_detail_id_id_sale FOREIGN KEY (id_sale) REFERENCES Sale(sale_id),
+  CONSTRAINT PK_sale_detail_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
 );
