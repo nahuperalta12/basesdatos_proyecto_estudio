@@ -1,5 +1,5 @@
---CREATE DATABASE BDNegiCustom3D
---USE BDNegiCustom3D
+--CREATE DATABASE BD3DBitStore
+--USE BD3DBitStore
 
 CREATE TABLE User
 (
@@ -13,7 +13,7 @@ CREATE TABLE User
   user_type INT NOT NULL, -- Tipo de usuario
   token_activation VARCHAR(100) NULL, -- Token de activación opcional
   token_reset VARCHAR(100) NULL, -- Token de reseteo opcional
-  token_reset_expires_at NULL, -- Fecha de expiración del token de reseteo
+  token_reset_expires_at DATE NULL, -- Fecha de expiración del token de reseteo
   created_at DATE NOT NULL DEFAULT GETDATE(), -- Fecha de creación por defecto actual
   updated_at DATE NOT NULL DEFAULT GETDATE(), -- Fecha de última actualización
   PRIMARY KEY (user_id), -- Clave Primaria
@@ -51,25 +51,21 @@ CREATE TABLE Payment_method
 (
   method_id INT IDENTITY(1,1) NOT NULL,
   method_name VARCHAR(25) NOT NULL,
-  PRIMARY KEY (method_id),
-  CONSTRAINT UQ_Payment_Method UNIQUE (method_name),  -- Nombre del método debe ser único
-  CONSTRAINT PK_method_id PRIMARY KEY (method_id)
+  CONSTRAINT PK_method_id PRIMARY KEY (method_id),
+  CONSTRAINT UQ_Payment_Method UNIQUE (method_name),  -- Nombre del método debe ser único  
 );
 
 CREATE TABLE Payment_status
 (
   status_id INT IDENTITY(1,1) NOT NULL,
   status_name VARCHAR(25) NOT NULL,
-  PRIMARY KEY (status_id),
+  CONSTRAINT PK_status_id PRIMARY KEY (status_id),
   CONSTRAINT UQ_Payment_Status UNIQUE (status_name),  -- Nombre del estado debe ser único
-  CONSTRAINT PK_status_id PRIMARY KEY (status_id)
 );
 
 CREATE TABLE Country
 (
   country_id INT IDENTITY(1,1) NOT NULL,
-  PRIMARY KEY (country_id),
-  country_id INT NOT NULL,
   country_name VARCHAR(100) NOT NULL,
   CONSTRAINT PK_country_id PRIMARY KEY (country_id)
 );
@@ -103,14 +99,15 @@ CREATE TABLE Payment
   id_status INT NOT NULL,
   id_method INT NOT NULL,
   CONSTRAINT PK_payment_id PRIMARY KEY (payment_id),
-  CONSTRAINT FK_status_FOREIGN KEY (status_id) REFERENCES Payment_status(status_id),
-  CONSTRAINT FK_status_id_id_method FOREIGN KEY (id_method) REFERENCES Payment_method(id_method)
+  CONSTRAINT FK_status_FOREIGN KEY (id_status) REFERENCES Payment_status(status_id),
+  CONSTRAINT FK_status_id_id_method FOREIGN KEY (id_method) REFERENCES Payment_method(method_id)
 );
 
 CREATE TABLE Province
 (
   province_id INT IDENTITY(1,1) NOT NULL,
   id_country INT NOT NULL,
+  province_name VARCHAR(100) NOT NULL,
   CONSTRAINT PK_province_id_id_country PRIMARY KEY (province_id, id_country),
   CONSTRAINT FK__province_id_id_country_id_country FOREIGN KEY (id_country) REFERENCES Country(country_id)
 );
@@ -119,6 +116,7 @@ CREATE TABLE City
 (
   city_id INT IDENTITY(1,1) NOT NULL,
   postal_code VARCHAR(20) NOT NULL,
+  city_name VARCHAR(100) NOT NULL,
   id_province INT NOT NULL,
   id_country INT NOT NULL,
   CONSTRAINT PK_city_id_id_province_id_country PRIMARY KEY (city_id, id_province, id_country),
@@ -129,7 +127,7 @@ CREATE TABLE Billing_address
 (
   billing_id INT IDENTITY(1,1) NOT NULL,
   address_line1 VARCHAR(255) NOT NULL,
-  adress_line2 VARCHAR(255) NOT NULL,
+  address_line2 VARCHAR(255) NOT NULL,
   created_at DATE NOT NULL,
   updated_at DATE NOT NULL,
   id_city INT NOT NULL,
@@ -161,5 +159,5 @@ CREATE TABLE Sale_detail
   id_product INT NOT NULL,
   CONSTRAINT PK_sale_detail_id PRIMARY KEY (sale_detail_id),
   CONSTRAINT FK_sale_detail_id_id_sale FOREIGN KEY (id_sale) REFERENCES Sale(sale_id),
-  CONSTRAINT PK_sale_detail_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
+  CONSTRAINT FK_sale_detail_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
 );
