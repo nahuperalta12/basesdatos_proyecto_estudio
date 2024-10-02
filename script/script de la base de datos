@@ -128,11 +128,11 @@ CREATE TABLE Sale
   sale_date DATE NOT NULL,
   id_client INT NOT NULL,
   id_billing INT NOT NULL,
-  payment_id INT NOT NULL,
+  id_payment INT NOT NULL,
   ADD CONSTRAINT PK_sale_id PRIMARY KEY (sale_id),
   ADD CONSTRAINT FK_sale_id_id_client FOREIGN KEY (id_client) REFERENCES User(user_id),
   ADD CONSTRAINT FK_sale_id_id_billing FOREIGN KEY (id_billing) REFERENCES Billing_address(billing_id),
-  ADD CONSTRAINT FK_sale_id_payment_id FOREIGN KEY (payment_id) REFERENCES Payment(payment_id)
+  ADD CONSTRAINT FK_sale_id_id_payment FOREIGN KEY (id_payment) REFERENCES Payment(id_payment)
 );
 
 CREATE TABLE Sale_detail
