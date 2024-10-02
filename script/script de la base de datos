@@ -1,18 +1,18 @@
 CREATE TABLE User
 (
-  user_id INT NOT NULL,
-  username VARCHAR(50) NOT NULL,
+  user_id INT IDENTITY NOT NULL,
+  username VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   name VARCHAR(50) NOT NULL,
   surname VARCHAR(50) NOT NULL,
-  email VARCHAR(80) NOT NULL,
-  active INT NOT NULL,
-  usert_type INT NOT NULL,
-  token_activation VARCHAR(100) NOT NULL,
-  token_reset VARCHAR(100) NOT NULL,
-  token_reset_expires_at DATE NOT NULL,
-  created_at DATE NOT NULL,
-  updated_at DATE NOT NULL,
+  email VARCHAR(80) NOT NULL UNIQUE,
+  active INT NOT NULL CHECK (active IN (0, 1)),
+  usert_type INT NOT NULL CHECK (user_type IN (1, 2, 3)),
+  token_activation VARCHAR(100) NULL,
+  token_reset VARCHAR(100) NULL,
+  token_reset_expires_at NULL,
+  created_at DATE NOT NULL DEFAULT GETDATE(),
+  updated_at DATE NOT NULL DEFAULT GETDATE(),
   PRIMARY KEY (user_id)
 );
 
