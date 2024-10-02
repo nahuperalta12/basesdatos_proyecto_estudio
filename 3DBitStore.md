@@ -184,9 +184,11 @@ Auditoría y control: Al tener roles definidos, se pueden auditar fácilmente la
 ### Casos de Uso
 
 1.Caso de Uso: Administradores
+
 ![Caso de Uso Administradores](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/casos%20de%20uso%20administrador.jpeg)
 
 2. Caso de Uso: Usuario no Registrado y Registrado
+
 ![Caso de Uso Usuarios](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/casos%20de%20uso%20usuario.jpeg)
 
 ### Desarrollo TEMA 1 "----"
