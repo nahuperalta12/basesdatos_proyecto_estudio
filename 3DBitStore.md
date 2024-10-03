@@ -1,6 +1,4 @@
-# Proyecto de Estudio!
-    
-**Estructura del documento principal:**
+# Proyecto de Estudio
 
 # SISTEMA DE VENTA DE ARCHIVOS DE IMPRESIÓN 3D “BITSTORE”
 
