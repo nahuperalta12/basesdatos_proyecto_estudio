@@ -95,7 +95,11 @@ erDiagram USER |o--o{ MESSAGE : "sends" USER ||--|{ BILLING_ADDRESS : "has" USER
 ![diagrama_relacional](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/der%20del%20proyecto.png) 
 
 ### Script de la Base de Datos
- Acceso (https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script_base_de_datos.sql)
+ Acceso [Script](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script_base_de_datos.sql)
+
+ ### Lote de Prueba
+
+ Acceso al [Lote de Prueba](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/c3f84ef917e9c409473217c3abba7014833a81c8/lote_de_prueba.sql)
 
 ### Diccionario de datos
 Acceso al documento [PDF](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/524fd8625e506f429b0b5eefbd2a18421e2cc817/doc/DiccionarioDeDatos.pdf) del diccionario de datos.
