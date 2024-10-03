@@ -92,7 +92,7 @@ Hecho usando: https://stackedit.io/app#
 erDiagram USER |o--o{ MESSAGE : "sends" USER ||--|{ BILLING_ADDRESS : "has" USER ||--o{ SALE : "makes" SALE ||--|{ SALE_DETAIL : "includes" SALE_DETAIL ||--|| PRODUCT : "refers to" PRODUCT ||--|{ PRODUCT_IMAGE : "has" PRODUCT }|--|| PRODUCT_CATEGORY : "belongs to" PAYMENT ||--o{ SALE : "settles" PAYMENT }|--|| PAYMENT_STATUS : "has status" PAYMENT }|--|| PAYMENT_METHOD : "uses" BILLING_ADDRESS ||--o{ CITY : "located in" CITY }|--|| PROVINCE : "located in" PROVINCE }|--|| COUNTRY : "located in"
 ```
 ### Diagrama relacional
-![diagrama_relacional](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/der%20del%20proyecto.png)
+![diagrama_relacional](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/der%20del%20proyecto.png) 
 
 ### Script de la Base de Datos
  Acceso (https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script_base_de_datos.sql)
