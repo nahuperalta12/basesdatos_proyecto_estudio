@@ -61,6 +61,7 @@ CREATE TABLE Payment_status
 CREATE TABLE Country
 (
   country_id INT NOT NULL,
+  country_name VARCHAR(100) NOT NULL,
   PRIMARY KEY (country_id)
 );
 
