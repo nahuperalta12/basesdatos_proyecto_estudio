@@ -101,6 +101,7 @@ CREATE TABLE Payment
 CREATE TABLE Province
 (
   province_id INT NOT NULL,
+  province_name VARCHAR(100) NOT NULL,
   id_country INT NOT NULL,
   PRIMARY KEY (province_id, id_country),
   FOREIGN KEY (id_country) REFERENCES Country(country_id)
@@ -109,6 +110,7 @@ CREATE TABLE Province
 CREATE TABLE City
 (
   city_id INT NOT NULL,
+  city_name VARCHAR(100) NOT NULL,
   postal_code VARCHAR(20) NOT NULL,
   id_province INT NOT NULL,
   id_country INT NOT NULL,
