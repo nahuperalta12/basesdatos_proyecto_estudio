@@ -8,7 +8,7 @@ Este espacio propone presentar la información para organizar el desarrollo del 
 
 Este borrador fue elaborado usando https://stackedit.io/app#
 
-**Estructura inicial del proyecto en el repositorio**
+**Estructura del proyecto en el repositorio**
 
     proyecto_estudio
     ->doc (carpeta con documentos e imágenes asociados al contenido principal)
