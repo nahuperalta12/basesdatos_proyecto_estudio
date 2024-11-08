@@ -23,12 +23,11 @@ En ocasiones el procedimiento o función se escribe en un lenguaje de programaci
 En estos casos hay que especificar el nombre del fichero donde se va a almacenar el código del programa, además del lenguaje de programación empleado.
 La sintaxis sería:
 
-
+```sql
     CREATE PROCEDURE <nombre del procedimiento o función> (<parámetros>)
     LANGUAGE <nombre del lenguaje de programacióm 
     EXTERNAL NAME <ruta del fichero>;
-  
-
+```
 Para llamar a un procedimiento o función se puede utilizar la sentencia CALL que invoca un procedimiento almacenado. La sentencia tiene la siguiente forma:
 
     CALL <nombre del procedimiento o función> (<argumentos>);
