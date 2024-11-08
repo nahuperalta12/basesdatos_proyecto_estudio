@@ -1,0 +1,27 @@
+name: Sync Content
+
+on:
+  push:
+    paths:
+      - 'script/tema02_Procedimientos y funciones almacenadas/tema_procedimientos y funciones almacenadas.md'
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Append content
+      run: |
+        echo "## Tema 2" >> 3DBitStore.md
+        cat "script/tema02_Procedimientos y funciones almacenadas/tema_procedimientos y funciones almacenadas.md" >> 3DBitStore.md
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add 3DBitStore.md
+        git commit -m "Update Tema 2 section in 3DBitStore.md"
+        git push
