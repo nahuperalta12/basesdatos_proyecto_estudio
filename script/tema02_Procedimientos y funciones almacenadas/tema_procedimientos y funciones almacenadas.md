@@ -32,4 +32,6 @@ EXTERNAL NAME <ruta del fichero>;
 
 Para llamar a un procedimiento o función se puede utilizar la sentencia CALL que invoca un procedimiento almacenado. La sentencia tiene la siguiente forma:
 
-    CALL <nombre del procedimiento o función> (<argumentos>);
+~~~sql
+CALL <nombre del procedimiento o función> (<argumentos>);
+~~~
