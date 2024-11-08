@@ -12,7 +12,12 @@ Por otro lado, las funciones necesitan que se determine algún tipo de devoluci�
 Esta se refleja con el comando RETURNS a la hora de crear la función. 
 La declaración de una función se realiza de la siguiente forma:
 
-~~~
+```javascript
+const value = 3;
+let result = value * 4;
+```
+
+~~~sql
 CREATE FUNCTION <nombre_función> (<parámetros>) 
 RETURNS (tipo de devolución> 
 <declaraciones locales> 
@@ -24,9 +29,9 @@ En estos casos hay que especificar el nombre del fichero donde se va a almacenar
 La sintaxis sería:
 
 ```sql
-    CREATE PROCEDURE <nombre del procedimiento o función> (<parámetros>)
-    LANGUAGE <nombre del lenguaje de programacióm 
-    EXTERNAL NAME <ruta del fichero>;
+CREATE PROCEDURE <nombre del procedimiento o función> (<parámetros>)
+LANGUAGE <nombre del lenguaje de programacióm 
+EXTERNAL NAME <ruta del fichero>;
 ```
 Para llamar a un procedimiento o función se puede utilizar la sentencia CALL que invoca un procedimiento almacenado. La sentencia tiene la siguiente forma:
 
