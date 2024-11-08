@@ -12,12 +12,12 @@ Por otro lado, las funciones necesitan que se determine algún tipo de devoluci�
 Esta se refleja con el comando RETURNS a la hora de crear la función. 
 La declaración de una función se realiza de la siguiente forma:
 
-
-    CREATE FUNCTION <nombre_función> (<parámetros>) 
-    RETURNS (tipo de devolución> 
-    <declaraciones locales> 
-    <cuerpo de la función>;
-  
+~~~
+CREATE FUNCTION <nombre_función> (<parámetros>) 
+RETURNS (tipo de devolución> 
+<declaraciones locales> 
+<cuerpo de la función>;
+~~~
   
 En ocasiones el procedimiento o función se escribe en un lenguaje de programación de propósito general.
 En estos casos hay que especificar el nombre del fichero donde se va a almacenar el código del programa, además del lenguaje de programación empleado.
