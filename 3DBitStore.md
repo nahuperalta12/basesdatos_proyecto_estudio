@@ -116,7 +116,8 @@ Acceso al documento [PDF](https://github.com/nahuperalta12/basesdatos_proyecto_e
 Se van a dividir los usuarios en tres grupos con diferentes niveles de acceso y funcionalidades, es decir, roles, los cuales son: usuarios no registrados, usuarios registrados, y administradores. 
 Los roles quedarían agrupados de la siguiente manera:
 
-1.Usuarios sin registrar (visitantes)
+1. Usuarios sin registrar (visitantes)
+
 Este rol tiene acceso limitado, puede ver productos y enviar consultas.
 
 Permisos:
@@ -126,12 +127,15 @@ Permisos:
 -	INSERT en la tabla Message: para enviar consultas.
 
 2. Usuarios registrados
+
 Los usuarios registrados tienen más interacciones con la página, como agregar productos a un carrito, realizar compras, y ver el estado de sus transacciones.
+
 Acciones:
 -	Hacer todo lo que puede hacer un usuario sin registrar.
 -	Realizar compras y pagar.
 -	Ver el historial de compras y sus consultas.
 -	Rol en la base de datos: usuario_registrado_rol
+
 Este rol tiene permisos adicionales para realizar compras y ver el historial.
 
 Permisos:
@@ -148,10 +152,12 @@ Permisos:
 
 4. Administradores
 El administrador tiene un conjunto de permisos más amplios, ya que administra tanto los productos como a los usuarios y las consultas. Para no tener un usuario omnipotente, se dividirá este en varios subroles, dependiendo de las responsabilidades de cada administrador.
+
 Subroles de administrador:
-Admin de productos: Maneja la gestión de los productos, como agregar, editar, o dar de baja/alta productos.
-Admin de consultas: Lee y responde a las consultas de los usuarios.
-Admin de usuarios: Gestiona a los usuarios, da de alta/baja cuentas, y puede cambiar los roles de otros usuarios.
+- Admin de productos: Maneja la gestión de los productos, como agregar, editar, o dar de baja/alta productos.
+- Admin de consultas: Lee y responde a las consultas de los usuarios.
+- Admin de usuarios: Gestiona a los usuarios, da de alta/baja cuentas, y puede cambiar los roles de otros usuarios.
+
 Rol 1: admin_productos
 Este rol puede gestionar productos.
 
