@@ -99,7 +99,7 @@ erDiagram USER |o--o{ MESSAGE : "sends" USER ||--|{ BILLING_ADDRESS : "has" USER
 
  ### Lote de Prueba
 
- Acceso al [Lote de Prueba](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/script/lote_de_pruebas_3DBitStore.sql)
+ Acceso al [Lote de Prueba](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script/lote_de_pruebas_3DBitStore.sql)
 
 ### Diccionario de datos
 Acceso al documento [PDF](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/524fd8625e506f429b0b5eefbd2a18421e2cc817/doc/DiccionarioDeDatos.pdf) del diccionario de datos.
