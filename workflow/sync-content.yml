@@ -3,7 +3,7 @@ name: Sync Content
 on:
   push:
     paths:
-      - 'script/tema02_Procedimientos y funciones almacenadas/tema_procedimientos y funciones almacenadas.md'
+      - 'script/tema01_Manejo_de_permisos_a_nivel_de_usuarios_de_base_de_datos/tema_Manejo _de_permisos_a_nivel_de_usuarios_de_base_de_datos.md'
 
 jobs:
   update-content:
@@ -15,8 +15,8 @@ jobs:
 
     - name: Append content
       run: |
-        echo "## Tema 2" >> 3DBitStore.md
-        cat "script/tema02_Procedimientos y funciones almacenadas/tema_procedimientos y funciones almacenadas.md" >> 3DBitStore.md
+        echo "## Tema 1" >> 3DBitStore.md
+        cat "script/tema01_Manejo_de_permisos_a_nivel_de_usuarios_de_base_de_datos/tema_Manejo _de_permisos_a_nivel_de_usuarios_de_base_de_datos.md" >> 3DBitStore.md
 
     - name: Commit changes
       run: |
