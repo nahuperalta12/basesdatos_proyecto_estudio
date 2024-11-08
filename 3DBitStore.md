@@ -75,9 +75,6 @@ Gestión de copias de seguridad: Aunque la base de datos está diseñada para se
 
 [**TEMA 2 "Procedimientos y Funciones Almacenadas"** ](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script/tema02_Procedimientos%20y%20funciones%20almacenadas/tema_procedimientos%20y%20funciones%20almacenadas.md)
 
-[**TEMA 1 "Manejo de permisos a nivel de usuarios de base de datos"**](workflow/tema01_Manejo_de_permisos_a_nivel_de_usuarios_de_base_de_datos.md)
-
-[**TEMA 2 "Procedimientos y Funciones Almacenadas"**](workflow/tema02_Procedimientos_y_funciones_almacenadas.md)
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA 
 
