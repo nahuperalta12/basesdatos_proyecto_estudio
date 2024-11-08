@@ -118,31 +118,33 @@ Los roles quedarían agrupados de la siguiente manera:
 
 1.Usuarios sin registrar (visitantes)
 Este rol tiene acceso limitado, puede ver productos y enviar consultas.
+
 Permisos:
-•	SELECT en la tabla Product: para ver productos.
-•	SELECT en la tabla Product_image: para ver las imágenes de los productos.
-•	SELECT en la tabla Product_category: para ver las categorías de los productos.
-•	INSERT en la tabla Message: para enviar consultas.
+- SELECT en la tabla Product: para ver productos.
+-	SELECT en la tabla Product_image: para ver las imágenes de los productos.
+-	SELECT en la tabla Product_category: para ver las categorías de los productos.
+-	INSERT en la tabla Message: para enviar consultas.
 
 2. Usuarios registrados
 Los usuarios registrados tienen más interacciones con la página, como agregar productos a un carrito, realizar compras, y ver el estado de sus transacciones.
 Acciones:
-•	Hacer todo lo que puede hacer un usuario sin registrar.
-•	Realizar compras y pagar.
-•	Ver el historial de compras y sus consultas.
-•	Rol en la base de datos: usuario_registrado_rol
+-	Hacer todo lo que puede hacer un usuario sin registrar.
+-	Realizar compras y pagar.
+-	Ver el historial de compras y sus consultas.
+-	Rol en la base de datos: usuario_registrado_rol
 Este rol tiene permisos adicionales para realizar compras y ver el historial.
+
 Permisos:
-•	Permisos heredados de visitante_rol:
-o	SELECT en las tablas Product, Product_image, Product_category, Message.
-o	INSERT en la tabla Message.
-•	Permisos adicionales:
-o	SELECT en la tabla Sale: para ver su historial de compras.
-o	SELECT en la tabla Sale_detail: para ver los detalles de las compras.
-o	SELECT en la tabla Payment: para ver los métodos de pago.
-o	INSERT en la tabla Sale: para realizar compras.
-o	INSERT en la tabla Sale_detail: para añadir productos a la compra.
-o	SELECT en la tabla Message: para ver sus consultas anteriores.
+-	Permisos heredados de visitante_rol:
+ -	SELECT en las tablas Product, Product_image, Product_category, Message.
+ -	INSERT en la tabla Message.
+ -	Permisos adicionales:
+ - SELECT en la tabla Sale: para ver su historial de compras.
+ - SELECT en la tabla Sale_detail: para ver los detalles de las compras.
+ -	SELECT en la tabla Payment: para ver los métodos de pago.
+ -	INSERT en la tabla Sale: para realizar compras.
+ -	INSERT en la tabla Sale_detail: para añadir productos a la compra.
+ -	SELECT en la tabla Message: para ver sus consultas anteriores.
 
 4. Administradores
 El administrador tiene un conjunto de permisos más amplios, ya que administra tanto los productos como a los usuarios y las consultas. Para no tener un usuario omnipotente, se dividirá este en varios subroles, dependiendo de las responsabilidades de cada administrador.
@@ -154,21 +156,25 @@ Rol 1: admin_productos
 Este rol puede gestionar productos.
 
 Permisos:
-•	SELECT, INSERT, UPDATE, DELETE en las tablas:
-	Product: para gestionar productos.
-	Product_image: para gestionar las imágenes de los productos.
-	Product_category: para añadir o modificar categorías de productos.
+-	SELECT, INSERT, UPDATE, DELETE en las tablas:
+ -	Product: para gestionar productos.
+ -	Product_image: para gestionar las imágenes de los productos.
+ -	Product_category: para añadir o modificar categorías de productos.
 
 Rol 2: admin_consultas
 Este rol gestiona las consultas de usuarios y marca las consultas como leídas o respondidas.
+
 Permisos:
-•	SELECT, UPDATE en la tabla Message: para ver las consultas de los usuarios y marcarlas como leídas (read) o respondidas (reply).
+-	SELECT, UPDATE en la tabla Message: para ver las consultas de los usuarios y marcarlas como leídas (read) o respondidas (reply).
+
 Rol 3: admin_usuarios
+
 Este rol puede gestionar usuarios y sus roles.
+
 Permisos:
-•	SELECT, INSERT, UPDATE, DELETE en la tabla User: para gestionar los usuarios.
-•	UPDATE en la tabla User: para actualizar roles y otros atributos de usuarios.
-•	SELECT en la tabla Message: para verificar consultas relacionadas a usuarios (si aplica).
+-	SELECT, INSERT, UPDATE, DELETE en la tabla User: para gestionar los usuarios.
+-	UPDATE en la tabla User: para actualizar roles y otros atributos de usuarios.
+-	SELECT en la tabla Message: para verificar consultas relacionadas a usuarios (si aplica).
 
 ### Resumen de los Roles:
 visitante_rol: Acceso limitado, puede ver productos y enviar consultas.
