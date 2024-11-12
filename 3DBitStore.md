@@ -70,10 +70,135 @@ Gestión de copias de seguridad: Aunque la base de datos está diseñada para se
 
 ## CAPITULO II: MARCO CONCEPTUAL O REFERENCIAL
 
-[**TEMA 1 "Manejo de permisos a nivel de usuarios de base de datos"**](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script/tema01_Manejo_de_permisos_a_nivel_de_usuarios_de_base_de_datos/tema_Manejo%20_de_permisos_a_nivel_de_usuarios_de_base_de_datos.md)
+### Tema 1
+
+## Manejo de permisos a nivel de usuarios de base de datos
+
+### Conceptos Fundamentales
+
+El manejo de permisos y roles en sistemas de bases de datos es un aspecto fundamental de la seguridad y administración, cuyo objetivo es controlar y restringir el acceso a los datos. Estos sistemas permiten a los administradores asignar permisos específicos a diferentes usuarios o grupos, garantizando que cada uno pueda realizar solo las operaciones autorizadas y manteniendo la integridad y confidencialidad de la información almacenada (Silberschatz, Korth, & Sudarshan, 2014).
+
+Los permisos en bases de datos se refieren a los derechos otorgados a un usuario o rol para ejecutar ciertas acciones, como leer, escribir, o modificar datos. Estos permisos pueden ser asignados a nivel de objeto (como tablas o vistas) y pueden variar desde acceso total (administrador) hasta permisos limitados, como solo lectura (Elmasri, 2007). Ramakrishnan (2007) explica que la correcta configuración de estos permisos es esencial para prevenir accesos no autorizados y mantener la seguridad de los datos sensibles.
+
+Por otro lado, los roles en una base de datos permiten agrupar permisos comunes que pueden ser asignados a múltiples usuarios. Este mecanismo facilita la administración, ya que, en lugar de asignar permisos individualmente a cada usuario, basta con asignarles un rol que contenga los permisos necesarios. Los roles suelen dividirse en categorías, como "lectores" (usuarios con permiso de solo lectura) o "editores" (usuarios con permisos de escritura y modificación) (Piattini, 2007). Además, los roles pueden establecer jerarquías, donde roles superiores heredan permisos de roles inferiores, promoviendo una administración eficiente y ordenada (Aguirre Sánchez, 2021).
+
+### Aplicación de Permisos y Roles en la Práctica
+
+En la práctica, los administradores de bases de datos configuran permisos a nivel de usuario y de rol para cumplir con los requerimientos de acceso específicos de la organización. Esta configuración implica la creación de usuarios con permisos diferenciados y la implementación de roles para tareas comunes. Un caso frecuente es la configuración de un rol de "solo lectura", que permite a ciertos usuarios consultar datos sin modificarlos. En el sistema SQL Server, es posible crear un esquema de seguridad que asigne estos permisos de manera personalizada, garantizando un control detallado del acceso (Tiebas, 2017).
+Para garantizar la eficacia de estos permisos, se recomienda realizar pruebas periódicas y documentar el comportamiento de los usuarios, así como verificar la compatibilidad de los permisos con las políticas de seguridad de la organización (Sánchez Serrano, 2010). Este enfoque permite anticipar y mitigar riesgos de seguridad, asegurando que solo los usuarios autorizados puedan acceder y modificar la información.
+
+### Conclusión
+
+La implementación de permisos y roles en bases de datos es un componente crucial de la administración y seguridad de datos. Un enfoque estructurado en la asignación de permisos, combinado con roles jerárquicos y pruebas de acceso, optimiza el manejo de la seguridad y facilita el cumplimiento de las políticas de privacidad y protección de datos. La aplicación práctica de estos conceptos permite que los sistemas de bases de datos mantengan su integridad y protejan la información frente a accesos no autorizados.
+
+### Tema 2
 
 
-[**TEMA 2 "Procedimientos y Funciones Almacenadas"** ](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script/tema02_Procedimientos%20y%20funciones%20almacenadas/tema_procedimientos%20y%20funciones%20almacenadas.md)
+La mayoría de los SGBD permiten escribir procedimientos y funciones en un lenguaje de programación de propósito general. 
+De forma global, para declarar un procedimiento se realizará dela siguiente manera
+
+~~~sql
+CREATE PROCEDURE <nombre_procedimiento> (<parámetros>) 
+<declaraciones locales> 
+<cuerpo del procedimiento>;
+~~~
+
+Los parámetros y las declaraciones tienen carácter opcional, especificandose únicamente cuando sea necesario. 
+Por otro lado, las funciones necesitan que se determine algún tipo de devolución. 
+Esta se refleja con el comando RETURNS a la hora de crear la función. 
+La declaración de una función se realiza de la siguiente forma:
+
+~~~sql
+CREATE FUNCTION <nombre_función> (<parámetros>) 
+RETURNS (tipo de devolución> 
+<declaraciones locales> 
+<cuerpo de la función>;
+~~~
+  
+En ocasiones el procedimiento o función se escribe en un lenguaje de programación de propósito general.
+En estos casos hay que especificar el nombre del fichero donde se va a almacenar el código del programa, además del lenguaje de programación empleado.
+La sintaxis sería:
+
+~~~sql
+CREATE PROCEDURE <nombre del procedimiento o función> (<parámetros>)
+LANGUAGE <nombre del lenguaje de programacióm 
+EXTERNAL NAME <ruta del fichero>;
+~~~
+
+Para llamar a un procedimiento o función se puede utilizar la sentencia CALL que invoca un procedimiento almacenado. La sentencia tiene la siguiente forma:
+
+~~~sql
+CALL <nombre del procedimiento o función> (<argumentos>);
+~~~
+
+### Tema 3
+
+# Optimización de Consultas en Bases de Datos mediante el Uso de Índices
+
+En los sistemas que gestionan grandes volúmenes de datos, la optimización de consultas es esencial para el rendimiento eficiente de las aplicaciones. Las consultas no optimizadas son un problema recurrente, ya que pueden provocar tiempos de respuesta prolongados y un mayor uso de recursos del sistema, lo cual afecta la experiencia del usuario. Entre las principales causas se encuentran errores en la codificación de consultas SQL, la falta de estrategias de indexación adecuadas y, en algunos casos, una infraestructura de hardware insuficiente. Este problema se agrava en organizaciones sin administradores de bases de datos (DBA) que optimicen el rendimiento del sistema.
+
+## Importancia de los Índices en la Optimización de Consultas
+
+Los índices en bases de datos relacionales son estructuras diseñadas para mejorar el tiempo de respuesta en la recuperación de datos. Al reducir la cantidad de registros que deben explorarse, los índices aceleran el procesamiento de las consultas y minimizan la carga en memoria y procesador. Sin embargo, su uso debe ser estratégico, pues los índices también ocupan espacio y pueden ralentizar la inserción, actualización o eliminación de datos.
+
+## Tipos de Índices y sus Aplicaciones
+
+Existen varios tipos de índices, cada uno adecuado para contextos específicos de uso:
+
+- **Índice Agrupado (Clustered Index)**: Este índice determina el orden físico de los datos en una tabla, lo que significa que los registros se organizan en disco en función de la clave primaria. Solo se permite un índice agrupado por tabla. Es especialmente útil para tablas grandes donde las consultas implican rangos de datos específicos.
+  
+    ```sql
+    CREATE CLUSTERED INDEX IX_venta_numeroVenta ON ventas (numeroVenta);
+    ```
+
+- **Índice No Agrupado (Nonclustered Index)**: Este índice no altera el orden físico de los datos, sino que crea una estructura separada con copias de las claves de índice y las columnas asociadas, facilitando búsquedas rápidas sin reorganizar la tabla. Es adecuado para columnas que se consultan con frecuencia pero no son claves primarias.
+  
+    ```sql
+    CREATE NONCLUSTERED INDEX IX_ventas_numeroVenta ON ventas (numeroVenta);
+    ```
+
+- **Índice Único (Unique Index)**: Asegura que los valores en una columna sean únicos, útil para campos como correos electrónicos o identificaciones. Es similar a un índice no agrupado pero incluye restricciones de unicidad.
+  
+    ```sql
+    CREATE UNIQUE INDEX idx_productos_id_producto ON productos (id_producto);
+    ```
+
+- **Índice Filtrado (Filtered Index)**: Aplica filtros específicos en una columna para incluir solo ciertos registros en el índice. Este tipo de índice reduce el tamaño del índice y mejora la velocidad de las consultas al segmentar datos específicos, útil para consultas sobre un subconjunto de datos.
+  
+    ```sql
+    CREATE INDEX idx_ventas_recientes ON ventas (fecha_venta) WHERE fecha_venta >= '2022-01-01';
+    ```
+
+- **Índice de Texto Completo (Full-Text Index)**: Diseñado para búsquedas de palabras clave y frases en columnas de texto largo, útil para campos de texto como descripciones o comentarios. Mejora la eficiencia de las consultas sobre grandes volúmenes de texto.
+  
+    ```sql
+    CREATE FULLTEXT INDEX ON productos (descripcion) KEY INDEX idx_productos_id_producto;
+    ```
+
+- **Índice Compuesto**: Contiene múltiples columnas en un solo índice, lo cual permite una búsqueda combinada. Es especialmente útil para consultas que combinan varias columnas, como `nombre` y `apellido` en registros de personas.
+
+## Buenas Prácticas en el Uso de Índices
+
+Para lograr una optimización efectiva, es importante considerar las prácticas recomendadas al implementar índices:
+
+1. **Análisis de Consultas Frecuentes**: Es fundamental identificar las consultas que se realizan con mayor frecuencia para determinar las columnas que deben ser indexadas.
+
+2. **Equilibrio entre Rendimiento de Lectura y Costo de Escritura**: Los índices aceleran las búsquedas, pero ralentizan las operaciones de inserción, actualización y eliminación. Por ello, el diseño de índices debe balancearse en función de las necesidades del sistema.
+
+3. **Revisión y Actualización de Índices**: Dado que las necesidades de la base de datos pueden cambiar, es importante revisar periódicamente la estructura de los índices y eliminar aquellos que ya no sean necesarios o ajustar los existentes.
+
+4. **Monitoreo del Impacto de los Índices**: Es recomendable monitorear el impacto de los índices en el rendimiento del sistema y ajustar su uso según las métricas de tiempo de respuesta y carga en los recursos.
+
+## Conclusión
+
+La optimización de consultas mediante el uso de índices es un proceso complejo que involucra desde la correcta codificación de las consultas hasta el mantenimiento de los índices y la configuración adecuada del hardware. La implementación de índices adecuados mejora significativamente el rendimiento de una base de datos, reduciendo tiempos de respuesta y aumentando la eficiencia de los recursos. No obstante, es crucial adaptar continuamente el diseño de índices conforme evolucionen las necesidades de la base de datos y las aplicaciones que dependen de ella.
+
+La optimización de consultas, basada en una estrategia integral de índices, es clave para mantener una experiencia de usuario satisfactoria y asegurar el rendimiento óptimo en entornos con grandes volúmenes de datos. Implementar y gestionar índices de manera eficiente permite maximizar el uso de los recursos del sistema y mantener un equilibrio entre rendimiento y costo, esencial para un sistema de bases de datos bien optimizado.
+
+### Tema 4
+
+
+
 
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA 
@@ -206,9 +331,19 @@ Auditoría y control: Al tener roles definidos, se pueden auditar fácilmente la
 
 ![Caso de Uso Usuarios](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/doc/casos%20de%20uso%20usuario.jpeg)
 
-### Desarrollo TEMA 1 "----"
+### Desarrollo TEMA 1
+[**TEMA 1 "Manejo de permisos a nivel de usuarios de base de datos"**](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script/tema01_Manejo_de_permisos_a_nivel_de_usuarios_de_base_de_datos)
 
-### Desarrollo TEMA 2 "----"
+### Desarrollo TEMA 2
+[**TEMA 2 "Procedimientos y Funciones Almacenadas"** ](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script/tema02_Procedimientos_y_funciones_almacenadas)
+
+### Desarrollo TEMA 3
+[**TEMA 2 "Procedimientos y Funciones Almacenadas"** ](https://github.com/nahuperalta12/basesdatos_proyecto_estudio/blob/main/script/tema_03_Optimizacion_de_consultas_a_traves_de_indices)
+
+### Desarrollo TEMA 4
+
+
+
 
 
 
