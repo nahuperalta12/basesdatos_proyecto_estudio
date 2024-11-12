@@ -1,7 +1,10 @@
---CREATE DATABASE BD3DBitStore
---USE BD3DBitStore
+CREATE DATABASE BD3DBitStore
+go
 
-CREATE TABLE User
+USE BD3DBitStore
+go
+
+CREATE TABLE User_table
 (
   user_id INT IDENTITY(1,1) NOT NULL, -- ID auto-incremental para usuarios
   username VARCHAR(50) NOT NULL, -- Nombre de usuario único
@@ -22,6 +25,7 @@ CREATE TABLE User
   CONSTRAINT CK_User_Active CHECK (active IN (0, 1)),  -- Solo permite valores 0 o 1 para "active"
   CONSTRAINT CK_User_Type CHECK (user_type IN (1, 2, 3, 4)) -- Valores permitidos para "user_type" 
 );
+go
 
 CREATE TABLE Product_category
 (
@@ -30,6 +34,7 @@ CREATE TABLE Product_category
   PRIMARY KEY (category_id),
   CONSTRAINT UQ_Product_Category UNIQUE (category_description)  -- La descripción debe ser única
 );
+go
 
 CREATE TABLE Message
 (
@@ -38,14 +43,15 @@ CREATE TABLE Message
   message_mail VARCHAR(80) NOT NULL,
   mail_subject VARCHAR(100) NOT NULL,
   mail_context VARCHAR(255) NOT NULL,
-  read INT NOT NULL,
+  mail_read INT NOT NULL,
   reply INT NOT NULL,
   id_user INT, -- Se agrega como NULL por que usuarios sin registrar pueden dejar un mensaje
   PRIMARY KEY (message_id),
-  FOREIGN KEY (id_user) REFERENCES User(user_id) ON DELETE CASCADE,  -- Borra mensajes si se elimina el usuario
-  CONSTRAINT CK_Message_Read CHECK (read IN (0, 1)),  -- Solo valores 0 o 1 para "read"
+  FOREIGN KEY (id_user) REFERENCES User_table(user_id) ON DELETE CASCADE,  -- Borra mensajes si se elimina el usuario
+  CONSTRAINT CK_Message_Read CHECK (mail_read IN (0, 1)),  -- Solo valores 0 o 1 para "read"
   CONSTRAINT CK_Message_Reply CHECK (reply IN (0, 1)) -- Solo valores 0 o 1 para "reply"
 );
+go
 
 CREATE TABLE Payment_method
 (
@@ -54,6 +60,7 @@ CREATE TABLE Payment_method
   CONSTRAINT PK_method_id PRIMARY KEY (method_id),
   CONSTRAINT UQ_Payment_Method UNIQUE (method_name),  -- Nombre del método debe ser único  
 );
+go
 
 CREATE TABLE Payment_status
 (
@@ -62,6 +69,7 @@ CREATE TABLE Payment_status
   CONSTRAINT PK_status_id PRIMARY KEY (status_id),
   CONSTRAINT UQ_Payment_Status UNIQUE (status_name),  -- Nombre del estado debe ser único
 );
+go
 
 CREATE TABLE Country
 (
@@ -69,6 +77,7 @@ CREATE TABLE Country
   country_name VARCHAR(100) NOT NULL,
   CONSTRAINT PK_country_id PRIMARY KEY (country_id)
 );
+go
 
 CREATE TABLE Product
 (
@@ -82,6 +91,7 @@ CREATE TABLE Product
   CONSTRAINT PK_product_id PRIMARY KEY (product_id),
   CONSTRAINT FK_product_id_id_category FOREIGN KEY (id_category) REFERENCES Product_category(category_id)
 );
+go
 
 CREATE TABLE Product_image
 (
@@ -91,6 +101,7 @@ CREATE TABLE Product_image
   CONSTRAINT PK_imagen_id PRIMARY KEY (imagen_id),
   CONSTRAINT FK_imagen_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
 );
+go
 
 CREATE TABLE Payment
 (
@@ -99,9 +110,10 @@ CREATE TABLE Payment
   id_status INT NOT NULL,
   id_method INT NOT NULL,
   CONSTRAINT PK_payment_id PRIMARY KEY (payment_id),
-  CONSTRAINT FK_status_FOREIGN KEY (id_status) REFERENCES Payment_status(status_id),
+  CONSTRAINT FK_status_FOREIGN FOREIGN KEY (id_status) REFERENCES Payment_status(status_id),
   CONSTRAINT FK_status_id_id_method FOREIGN KEY (id_method) REFERENCES Payment_method(method_id)
 );
+go
 
 CREATE TABLE Province
 (
@@ -111,6 +123,7 @@ CREATE TABLE Province
   CONSTRAINT PK_province_id_id_country PRIMARY KEY (province_id, id_country),
   CONSTRAINT FK__province_id_id_country_id_country FOREIGN KEY (id_country) REFERENCES Country(country_id)
 );
+go
 
 CREATE TABLE City
 (
@@ -122,6 +135,7 @@ CREATE TABLE City
   CONSTRAINT PK_city_id_id_province_id_country PRIMARY KEY (city_id, id_province, id_country),
   CONSTRAINT FK_city_id_id_province_id_country FOREIGN KEY (id_province, id_country) REFERENCES Province(province_id, id_country)
 );
+go
 
 CREATE TABLE Billing_address
 (
@@ -136,6 +150,7 @@ CREATE TABLE Billing_address
   CONSTRAINT PK_billing_id PRIMARY KEY (billing_id),
   CONSTRAINT FK_billing_id_id_city_id_province_id_country FOREIGN KEY (id_city, id_province, id_country) REFERENCES City(city_id, id_province, id_country)
 );
+go
 
 CREATE TABLE Sale
 (
@@ -145,10 +160,11 @@ CREATE TABLE Sale
   id_billing INT NOT NULL,
   id_payment INT NOT NULL,
   CONSTRAINT PK_sale_id PRIMARY KEY (sale_id),
-  CONSTRAINT FK_sale_id_id_client FOREIGN KEY (id_client) REFERENCES User(user_id),
+  CONSTRAINT FK_sale_id_id_client FOREIGN KEY (id_client) REFERENCES User_table(user_id),
   CONSTRAINT FK_sale_id_id_billing FOREIGN KEY (id_billing) REFERENCES Billing_address(billing_id),
-  CONSTRAINT FK_sale_id_id_payment FOREIGN KEY (id_payment) REFERENCES Payment(id_payment)
+  CONSTRAINT FK_sale_id_id_payment FOREIGN KEY (id_payment) REFERENCES Payment(payment_id)
 );
+go
 
 CREATE TABLE Sale_detail
 (
@@ -159,5 +175,12 @@ CREATE TABLE Sale_detail
   id_product INT NOT NULL,
   CONSTRAINT PK_sale_detail_id PRIMARY KEY (sale_detail_id),
   CONSTRAINT FK_sale_detail_id_id_sale FOREIGN KEY (id_sale) REFERENCES Sale(sale_id),
-  CONSTRAINT FK_sale_detail_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id)
+  CONSTRAINT FK_sale_detail_id_id_product FOREIGN KEY (id_product) REFERENCES Product(product_id),
+  CONSTRAINT CK_price_detail CHECK (price_detail >= 0)
 );
+go
+
+/*
+USE master;
+DROP DATABASE BD3DBitStore; 
+*/
