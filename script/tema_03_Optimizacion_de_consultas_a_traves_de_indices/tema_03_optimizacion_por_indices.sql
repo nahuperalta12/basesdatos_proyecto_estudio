@@ -1,8 +1,4 @@
-/* BASE DE DATOS I - 2024
-   PROYECTO DE ESTUDIO - NEW ORDER
-   COMISIÓN 2 - GRUPO 3
-   Tema 4: Optimización de consultas a través de índices
-*/
+/* Optimización de consultas a través de índices */
 
 USE indices_db;
 
