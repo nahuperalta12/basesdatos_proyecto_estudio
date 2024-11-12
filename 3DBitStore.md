@@ -35,46 +35,46 @@ Este problema incita a investigar la mejor manera de gestionar los datos de la t
 El objetivo general del trabajo práctico es diseñar e implementar una base de datos segura y eficiente para una tienda virtual de venta de archivos de impresión 3D, que permita la correcta gestión de productos y mensajes, y que garantice el control de acceso adecuado mediante la división de roles de usuarios (publicador, consultor y administrador). Este objetivo responde a la necesidad de crear un sistema de información que proteja los datos sensibles y que al mismo tiempo facilite la operación eficiente del negocio.
 
 ### Objetivos Específicos
-Definir y estructurar los roles de usuario: Desarrollar un sistema que permita a los publicadores, consultores y administradores realizar sus funciones con un acceso controlado a las tablas de la base de datos, asegurando que cada rol tenga los permisos necesarios y adecuados.
+- Definir y estructurar los roles de usuario: Desarrollar un sistema que permita a los publicadores, consultores y administradores realizar sus funciones con un acceso controlado a las tablas de la base de datos, asegurando que cada rol tenga los permisos necesarios y adecuados.
 
-Implementar medidas de seguridad en el acceso a la información: Desarrollar mecanismos que aseguren la protección de los datos sensibles, como los mensajes y productos, limitando el acceso solo a los usuarios autorizados y estableciendo permisos adecuados.
+- Implementar medidas de seguridad en el acceso a la información: Desarrollar mecanismos que aseguren la protección de los datos sensibles, como los mensajes y productos, limitando el acceso solo a los usuarios autorizados y estableciendo permisos adecuados.
 
-Optimizar la gestión de archivos de impresión 3D y mensajes: Diseñar la base de datos para que permita la carga, consulta y modificación de archivos y mensajes de manera eficiente, asegurando la integridad de la información.
+- Optimizar la gestión de archivos de impresión 3D y mensajes: Diseñar la base de datos para que permita la carga, consulta y modificación de archivos y mensajes de manera eficiente, asegurando la integridad de la información.
 
-Escalabilidad del sistema: Asegurar que la base de datos esté preparada para manejar un crecimiento en la cantidad de archivos, usuarios y transacciones sin afectar su rendimiento.
+- Escalabilidad del sistema: Asegurar que la base de datos esté preparada para manejar un crecimiento en la cantidad de archivos, usuarios y transacciones sin afectar su rendimiento.
 
-Garantizar la integridad de los datos: Implementar reglas de integridad referencial y consistencia de los datos, evitando problemas como duplicaciones, accesos no autorizados y pérdida de información crítica.
+- Garantizar la integridad de los datos: Implementar reglas de integridad referencial y consistencia de los datos, evitando problemas como duplicaciones, accesos no autorizados y pérdida de información crítica.
 
 Con estos objetivos, el trabajo busca brindar una solución que no solo responda a la necesidad de gestionar la venta de archivos de impresión 3D, sino que también proteja los datos y optimice el funcionamiento de la tienda virtual.
 
 ### Alcance
 El proyecto abarcará las siguientes áreas:
 
-Diseño de la base de datos: Se creará una estructura de base de datos que soporte las operaciones de una tienda virtual de venta de archivos de impresión 3D. Esto incluye la gestión de productos, usuarios, roles, transacciones y consultas de manera eficiente y segura.
+- Diseño de la base de datos: Se creará una estructura de base de datos que soporte las operaciones de una tienda virtual de venta de archivos de impresión 3D. Esto incluye la gestión de productos, usuarios, roles, transacciones y consultas de manera eficiente y segura.
 
-Gestión de roles y permisos: Se implementarán diferentes roles de usuario con niveles de acceso adecuados, tales como Usuario Visitante, Usuario Registrado y diversos subroles de Administrador (productos, consultas y usuarios). Cada rol tendrá permisos específicos para realizar sus funciones dentro del sistema.
+- Gestión de roles y permisos: Se implementarán diferentes roles de usuario con niveles de acceso adecuados, tales como Usuario Visitante, Usuario Registrado y diversos subroles de Administrador (productos, consultas y usuarios). Cada rol tendrá permisos específicos para realizar sus funciones dentro del sistema.
 Seguridad y control de acceso: Se desarrollarán mecanismos de seguridad para proteger los datos sensibles, como la información personal de los usuarios. Se implementará el principio de privilegios mínimos para asegurar que cada usuario solo tenga acceso a las funciones que necesita.
 
-Escalabilidad: El sistema será diseñado para escalar adecuadamente, permitiendo un crecimiento en la cantidad de productos, usuarios y transacciones sin afectar el rendimiento.
+- Escalabilidad: El sistema será diseñado para escalar adecuadamente, permitiendo un crecimiento en la cantidad de productos, usuarios y transacciones sin afectar el rendimiento.
 
-Optimización de la gestión de archivos: La base de datos permitirá la gestión eficiente de los archivos de impresión 3D, desde su carga hasta la consulta y modificación, asegurando que la información esté organizada y sea accesible de manera rápida.
+- Optimización de la gestión de archivos: La base de datos permitirá la gestión eficiente de los archivos de impresión 3D, desde su carga hasta la consulta y modificación, asegurando que la información esté organizada y sea accesible de manera rápida.
 
 ### Limitaciones
 
-Integración con sistemas de pago: El proyecto no se centrará en la gestión de facturación ni en los procesos detallados relacionados con los sistemas de pago, tales como la seguridad de tarjetas de crédito, la validación de tarjetas o la verificación de identidad para procesar transacciones.
+- Integración con sistemas de pago: El proyecto no se centrará en la gestión de facturación ni en los procesos detallados relacionados con los sistemas de pago, tales como la seguridad de tarjetas de crédito, la validación de tarjetas o la verificación de identidad para procesar transacciones.
 
-Verificación de direcciones: Aunque se contemplará una tabla de direcciones de facturación (BillingAddress), no se llevará a cabo una validación en tiempo real de la validez o autenticidad de las direcciones ingresadas. Estas serán tratadas como datos de ejemplo y no se profundizará en su verificación.
+- Verificación de direcciones: Aunque se contemplará una tabla de direcciones de facturación (BillingAddress), no se llevará a cabo una validación en tiempo real de la validez o autenticidad de las direcciones ingresadas. Estas serán tratadas como datos de ejemplo y no se profundizará en su verificación.
 
-Gestión de copias de seguridad: Aunque la base de datos está diseñada para ser eficiente y segura, la creación y gestión de copias de seguridad podría no estar completamente automatizada, lo que introduce el riesgo de pérdida de datos en caso de fallos del sistema o errores humanos.
+- Gestión de copias de seguridad: Aunque la base de datos está diseñada para ser eficiente y segura, la creación y gestión de copias de seguridad podría no estar completamente automatizada, lo que introduce el riesgo de pérdida de datos en caso de fallos del sistema o errores humanos.
 
 
 ## CAPITULO II: MARCO CONCEPTUAL O REFERENCIAL
 
 ### Tema 1
 
-## Manejo de permisos a nivel de usuarios de base de datos
+### Manejo de permisos a nivel de usuarios de base de datos
 
-### Conceptos Fundamentales
+#### Conceptos Fundamentales
 
 El manejo de permisos y roles en sistemas de bases de datos es un aspecto fundamental de la seguridad y administración, cuyo objetivo es controlar y restringir el acceso a los datos. Estos sistemas permiten a los administradores asignar permisos específicos a diferentes usuarios o grupos, garantizando que cada uno pueda realizar solo las operaciones autorizadas y manteniendo la integridad y confidencialidad de la información almacenada (Silberschatz, Korth, & Sudarshan, 2014).
 
@@ -82,17 +82,16 @@ Los permisos en bases de datos se refieren a los derechos otorgados a un usuario
 
 Por otro lado, los roles en una base de datos permiten agrupar permisos comunes que pueden ser asignados a múltiples usuarios. Este mecanismo facilita la administración, ya que, en lugar de asignar permisos individualmente a cada usuario, basta con asignarles un rol que contenga los permisos necesarios. Los roles suelen dividirse en categorías, como "lectores" (usuarios con permiso de solo lectura) o "editores" (usuarios con permisos de escritura y modificación) (Piattini, 2007). Además, los roles pueden establecer jerarquías, donde roles superiores heredan permisos de roles inferiores, promoviendo una administración eficiente y ordenada (Aguirre Sánchez, 2021).
 
-### Aplicación de Permisos y Roles en la Práctica
+#### Aplicación de Permisos y Roles en la Práctica
 
 En la práctica, los administradores de bases de datos configuran permisos a nivel de usuario y de rol para cumplir con los requerimientos de acceso específicos de la organización. Esta configuración implica la creación de usuarios con permisos diferenciados y la implementación de roles para tareas comunes. Un caso frecuente es la configuración de un rol de "solo lectura", que permite a ciertos usuarios consultar datos sin modificarlos. En el sistema SQL Server, es posible crear un esquema de seguridad que asigne estos permisos de manera personalizada, garantizando un control detallado del acceso (Tiebas, 2017).
 Para garantizar la eficacia de estos permisos, se recomienda realizar pruebas periódicas y documentar el comportamiento de los usuarios, así como verificar la compatibilidad de los permisos con las políticas de seguridad de la organización (Sánchez Serrano, 2010). Este enfoque permite anticipar y mitigar riesgos de seguridad, asegurando que solo los usuarios autorizados puedan acceder y modificar la información.
 
-### Conclusión
+#### Conclusión
 
 La implementación de permisos y roles en bases de datos es un componente crucial de la administración y seguridad de datos. Un enfoque estructurado en la asignación de permisos, combinado con roles jerárquicos y pruebas de acceso, optimiza el manejo de la seguridad y facilita el cumplimiento de las políticas de privacidad y protección de datos. La aplicación práctica de estos conceptos permite que los sistemas de bases de datos mantengan su integridad y protejan la información frente a accesos no autorizados.
 
 ### Tema 2
-
 
 La mayoría de los SGBD permiten escribir procedimientos y funciones en un lenguaje de programación de propósito general. 
 De forma global, para declarar un procedimiento se realizará dela siguiente manera
@@ -133,15 +132,15 @@ CALL <nombre del procedimiento o función> (<argumentos>);
 
 ### Tema 3
 
-# Optimización de Consultas en Bases de Datos mediante el Uso de Índices
+### Optimización de Consultas en Bases de Datos mediante el Uso de Índices
 
 En los sistemas que gestionan grandes volúmenes de datos, la optimización de consultas es esencial para el rendimiento eficiente de las aplicaciones. Las consultas no optimizadas son un problema recurrente, ya que pueden provocar tiempos de respuesta prolongados y un mayor uso de recursos del sistema, lo cual afecta la experiencia del usuario. Entre las principales causas se encuentran errores en la codificación de consultas SQL, la falta de estrategias de indexación adecuadas y, en algunos casos, una infraestructura de hardware insuficiente. Este problema se agrava en organizaciones sin administradores de bases de datos (DBA) que optimicen el rendimiento del sistema.
 
-## Importancia de los Índices en la Optimización de Consultas
+#### Importancia de los Índices en la Optimización de Consultas
 
 Los índices en bases de datos relacionales son estructuras diseñadas para mejorar el tiempo de respuesta en la recuperación de datos. Al reducir la cantidad de registros que deben explorarse, los índices aceleran el procesamiento de las consultas y minimizan la carga en memoria y procesador. Sin embargo, su uso debe ser estratégico, pues los índices también ocupan espacio y pueden ralentizar la inserción, actualización o eliminación de datos.
 
-## Tipos de Índices y sus Aplicaciones
+#### Tipos de Índices y sus Aplicaciones
 
 Existen varios tipos de índices, cada uno adecuado para contextos específicos de uso:
 
@@ -177,7 +176,7 @@ Existen varios tipos de índices, cada uno adecuado para contextos específicos 
 
 - **Índice Compuesto**: Contiene múltiples columnas en un solo índice, lo cual permite una búsqueda combinada. Es especialmente útil para consultas que combinan varias columnas, como `nombre` y `apellido` en registros de personas.
 
-## Buenas Prácticas en el Uso de Índices
+#### Buenas Prácticas en el Uso de Índices
 
 Para lograr una optimización efectiva, es importante considerar las prácticas recomendadas al implementar índices:
 
@@ -189,7 +188,7 @@ Para lograr una optimización efectiva, es importante considerar las prácticas 
 
 4. **Monitoreo del Impacto de los Índices**: Es recomendable monitorear el impacto de los índices en el rendimiento del sistema y ajustar su uso según las métricas de tiempo de respuesta y carga en los recursos.
 
-## Conclusión
+#### Conclusión
 
 La optimización de consultas mediante el uso de índices es un proceso complejo que involucra desde la correcta codificación de las consultas hasta el mantenimiento de los índices y la configuración adecuada del hardware. La implementación de índices adecuados mejora significativamente el rendimiento de una base de datos, reduciendo tiempos de respuesta y aumentando la eficiencia de los recursos. No obstante, es crucial adaptar continuamente el diseño de índices conforme evolucionen las necesidades de la base de datos y las aplicaciones que dependen de ella.
 
