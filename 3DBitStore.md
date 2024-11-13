@@ -374,12 +374,64 @@ Permisos:
 -	UPDATE en la tabla User: para actualizar roles y otros atributos de usuarios.
 -	SELECT en la tabla Message: para verificar consultas relacionadas a usuarios (si aplica).
 
+Rol 4: admin_mantenimiento
+
+Este rol se encarga de realizar tareas de mantenimiento rutinario de la base de datos, como la actualización de estadísticas, el reorganizado y la reconstrucción de índices, y la limpieza de registros de logs de actividad. Estos permisos permiten mantener el rendimiento y la integridad de la base de datos.
+
+Permisos:
+- ALTER INDEX en todas las tablas relevantes: Para reorganizar y reconstruir índices.
+- UPDATE STATISTICS en todas las tablas: Para actualizar estadísticas de uso y mejorar el rendimiento de las consultas.
+- TRUNCATE TABLE en tablas de logs temporales: Para limpiar registros de auditoría y log de actividad que ya no sean necesarios.
+- EXECUTE en procedimientos de mantenimiento almacenados: Para ejecutar procedimientos que realicen mantenimiento programado en la base de datos.
+- VIEW DATABASE STATE: Para monitorear el estado general de la base de datos y detectar posibles problemas de rendimiento.
+
+Rol 5: admin_backup
+
+Este rol es responsable de la administración de respaldos y la recuperación de la base de datos en caso de fallos. Los permisos de este rol aseguran que los datos puedan respaldarse y restaurarse según las políticas de recuperación de desastres.
+
+Permisos:
+
+- BACKUP DATABASE en la base de datos BD3DBitStore: Para realizar respaldos completos de la base de datos.
+- BACKUP LOG en la base de datos BD3DBitStore: Para realizar respaldos de los registros de transacciones, permitiendo restaurar la base de datos a un punto específico en el tiempo.
+- RESTORE DATABASE en BD3DBitStore (con precaución): Para realizar restauraciones en entornos de prueba o recuperación controlada, especialmente durante pruebas de recuperación.
+- ALTER ANY CREDENTIAL: Para gestionar las credenciales necesarias para almacenamiento externo o nube si los respaldos se almacenan fuera del servidor local.
+- VIEW DEFINITION: Para ver la estructura de los objetos en la base de datos al planificar respaldos y restauraciones.
+
+Rol 6: admin_auditoría
+
+Este rol supervisa el acceso y las modificaciones a la base de datos, enfocándose en la seguridad y el cumplimiento de políticas de acceso y uso. Este rol está orientado a la auditoría de las actividades, revisando y monitoreando el acceso a los datos y las operaciones críticas en la base de datos.
+
+Permisos:
+
+- VIEW SERVER STATE: Para monitorear el estado del servidor y la actividad general en el servidor de base de datos.
+- SELECT en tablas de logs y auditoría: Para ver los registros de acceso y auditoría, analizando las actividades de los usuarios.
+- EXECUTE en procedimientos de auditoría almacenados: Para ejecutar procedimientos de auditoría que recopilen y registren actividades críticas en la base de datos.
+- ALTER TRACE: Para configurar y revisar trazas de auditoría en el servidor, recopilando información de acceso y actividad.
+- VIEW AUDIT STATE: Para supervisar el estado de los objetos de auditoría en la base de datos.
+
+Rol 7: admin_seguridad
+
+Este rol se encarga de gestionar las configuraciones de seguridad de la base de datos, como permisos de acceso, configuración de usuarios y gestión de roles. Este rol es crítico para mantener una base de datos segura y acorde a las políticas de seguridad establecidas.
+
+Permisos:
+
+- ALTER ANY LOGIN: Para gestionar logins de usuarios a nivel de servidor, incluyendo la creación, modificación y eliminación.
+- ALTER ANY USER: Para configurar usuarios dentro de la base de datos, asignar roles y modificar permisos.
+- ALTER ROLE en roles de base de datos: Para modificar roles, agregar o eliminar miembros de los roles definidos.
+- VIEW DATABASE STATE y VIEW SERVER STATE: Para monitorear actividades y configuraciones en el servidor y la base de datos, garantizando que los accesos se ajusten a las políticas de seguridad.
+- GRANT, REVOKE y DENY permisos a nivel de base de datos: Para controlar el acceso a tablas, vistas, procedimientos y otros objetos según las necesidades de cada usuario.
+
 ### Resumen de los Roles:
-visitante_rol: Acceso limitado, puede ver productos y enviar consultas.
-usuario_registrado_rol: Puede hacer todo lo que el visitante hace más gestionar su carrito, hacer compras y ver su historial.
-admin_productos: Gestiona productos.
-admin_consultas: Gestiona consultas de usuarios.
-admin_usuarios: Gestiona usuarios y roles.
+
+ - visitante_rol: Acceso limitado, puede ver productos y enviar consultas.
+ - usuario_registrado_rol: Puede hacer todo lo que el visitante hace más gestionar su carrito, hacer compras y ver su historial.
+ - admin_productos: Gestiona productos.
+ - admin_consultas: Gestiona consultas de usuarios.
+ - admin_usuarios: Gestiona usuarios y roles.
+ - admin_mantenimiento_rol: Realiza tareas de mantenimiento rutinario en la base de datos, como actualización de estadísticas, reorganización de índices y limpieza de registros de logs.
+ - admin_backup_rol: Gestiona los respaldos y la restauración de la base de datos, asegurando la recuperación de datos en caso de fallos.
+ - admin_auditoria_rol: Supervisa las actividades en la base de datos, centrado en la seguridad y el cumplimiento de las políticas de acceso.
+ - admin_seguridad_rol: Administra la seguridad de la base de datos, gestionando usuarios, roles y permisos de acceso para proteger los datos.
 
 ### Consideraciones teóricas:
 Modelo RBAC (Role-Based Access Control): Los roles y permisos se organizan con base en funciones organizacionales, permitiendo una asignación centralizada de permisos. Es una metodología eficiente para gestionar permisos en entornos complejos, evitando la asignación individual a cada usuario.
