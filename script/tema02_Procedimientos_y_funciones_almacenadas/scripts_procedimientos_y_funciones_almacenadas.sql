@@ -2,8 +2,8 @@ Acontinuacion se mostrara como crear distintos procedimientos que utilizaran dis
 el usuario con el rol de Visitante podra insertar consultas en la tabla Message solo mediante la utilizacion de un procedimiento, un 
 administrador de prodcuto solo podra insertar productos nuevos a travez de otro procedimiento, y asi.
 
+    
 Procedimiento de insercion en tabla Product:
-
 CREATE PROCEDURE insert_product
     @product_name VARCHAR(100),
     @product_description VARCHAR(255),
@@ -21,9 +21,8 @@ BEGIN
     PRINT 'Producto insertado correctamente.';
 END;
 
-Procedimiento de insercion en tabla Product:
 
-
+Procedimiento de actualizacion en la tabla Product:
 CREATE PROCEDURE update_product
     @product_id INT,
     @product_name VARCHAR(100),
@@ -53,8 +52,6 @@ END;
 
 
 Funcion para encontrar el producto mas vendido en un intervalo de tiempo
-
-
 CREATE FUNCTION get_top_selling_product
 (
     @start_date DATE,
@@ -77,8 +74,6 @@ BEGIN
 END;
 
 Funcion para calcular el valor de las ventas entre dos fechas
-
-
 CREATE FUNCTION calculate_revenue
 (
     @start_date DATE,
@@ -101,7 +96,6 @@ END;
 
 
 Procedimiento de insercion en tabla Message
-
 CREATE PROCEDURE insert_proc
     @product_name VARCHAR(100),
     @product_description VARCHAR(255),
