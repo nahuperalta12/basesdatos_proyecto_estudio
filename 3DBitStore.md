@@ -342,7 +342,7 @@ Permisos:
  -	INSERT en la tabla Sale_detail: para añadir productos a la compra.
  -	SELECT en la tabla Message: para ver sus consultas anteriores.
 
-4. Administradores
+3. Administradores
 El administrador tiene un conjunto de permisos más amplios, ya que administra tanto los productos como a los usuarios y las consultas. Para no tener un usuario omnipotente, se dividirá este en varios subroles, dependiendo de las responsabilidades de cada administrador.
 
 Subroles de administrador:
