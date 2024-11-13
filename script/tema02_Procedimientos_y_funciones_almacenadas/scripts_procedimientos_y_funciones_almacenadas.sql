@@ -243,6 +243,10 @@ SET STATISTICS TIME OFF;
 SET STATISTICS IO OFF;
 
 
+Conclusiones:
+La creacion de procedimientos y funciones facilita la utilizacion de roles para mejorar la seguridad del sistema, tambien facilita la reutilizacion de acciones que puedan realizar distintos roles.
+
+
 
 
 
