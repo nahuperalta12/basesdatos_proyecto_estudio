@@ -4,7 +4,7 @@ administrador de prodcuto solo podra insertar productos nuevos a travez de otro 
 
 Procedimiento de insercion en tabla Product:
 
-
+~~~sql
     CREATE PROCEDURE insert_product
         @product_name VARCHAR(100),
         @product_description VARCHAR(255),
@@ -21,9 +21,10 @@ Procedimiento de insercion en tabla Product:
         -- Mensaje de éxito
         PRINT 'Producto insertado correctamente.';
     END;
-
+~~~
 Funcion para encontrar el producto mas vendido en un intervalo de tiempo
 
+~~~sql
     CREATE FUNCTION get_top_selling_product
     (
         @start_date DATE,
@@ -44,9 +45,10 @@ Funcion para encontrar el producto mas vendido en un intervalo de tiempo
     
         RETURN @top_product_id;
     END;
-
+~~~
 Funcion para calcular el valor de las ventas entre dos fechas
 
+~~~sql
         CREATE FUNCTION calculate_revenue
         (
             @start_date DATE,
@@ -66,10 +68,10 @@ Funcion para calcular el valor de las ventas entre dos fechas
             -- Retorna el valor total de las ganancias
             RETURN ISNULL(@total_revenue, 0);
         END;
-
+~~~
 
 Procedimiento de insercion en tabla Message
-
+~~~sql
     CREATE PROCEDURE insert_proc
         @product_name VARCHAR(100),
         @product_description VARCHAR(255),
@@ -86,4 +88,4 @@ Procedimiento de insercion en tabla Message
         -- Mensaje de éxito
         PRINT 'Producto insertado correctamente.';
     END;
-
+~~~
