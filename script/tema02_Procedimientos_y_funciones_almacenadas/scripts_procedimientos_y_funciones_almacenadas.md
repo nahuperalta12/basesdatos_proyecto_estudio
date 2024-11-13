@@ -45,6 +45,27 @@ Funcion para encontrar el producto mas vendido en un intervalo de tiempo
         RETURN @top_product_id;
     END;
 
+Funcion para calcular el valor de las ventas entre dos fechas
+
+        CREATE FUNCTION calculate_revenue
+        (
+            @start_date DATE,
+            @end_date DATE
+        )
+        RETURNS FLOAT
+        AS
+        BEGIN
+            DECLARE @total_revenue FLOAT;
+        
+            -- Calcula la ganancia total en el intervalo de fechas
+            SELECT @total_revenue = SUM(sd.quantity_detail * sd.price_detail)
+            FROM Sale s
+            JOIN Sale_detail sd ON s.sale_id = sd.id_sale
+            WHERE s.sale_date BETWEEN @start_date AND @end_date;
+        
+            -- Retorna el valor total de las ganancias
+            RETURN ISNULL(@total_revenue, 0);
+        END;
 
 
 Procedimiento de insercion en tabla Message
