@@ -332,15 +332,15 @@ Este rol tiene permisos adicionales para realizar compras y ver el historial.
 
 Permisos:
 -	Permisos heredados de visitante_rol:
- -	SELECT en las tablas Product, Product_image, Product_category, Message.
- -	INSERT en la tabla Message.
- -	Permisos adicionales:
- - SELECT en la tabla Sale: para ver su historial de compras.
- - SELECT en la tabla Sale_detail: para ver los detalles de las compras.
- -	SELECT en la tabla Payment: para ver los métodos de pago.
- -	INSERT en la tabla Sale: para realizar compras.
- -	INSERT en la tabla Sale_detail: para añadir productos a la compra.
- -	SELECT en la tabla Message: para ver sus consultas anteriores.
+      -	SELECT en las tablas Product, Product_image, Product_category, Message.
+      -	INSERT en la tabla Message.
+-	Permisos adicionales:
+      - SELECT en la tabla Sale: para ver su historial de compras.
+      - SELECT en la tabla Sale_detail: para ver los detalles de las compras.
+      -	SELECT en la tabla Payment: para ver los métodos de pago.
+      -	INSERT en la tabla Sale: para realizar compras.
+      -	INSERT en la tabla Sale_detail: para añadir productos a la compra.
+      -	SELECT en la tabla Message: para ver sus consultas anteriores.
 
 3. Administradores
 El administrador tiene un conjunto de permisos más amplios, ya que administra tanto los productos como a los usuarios y las consultas. Para no tener un usuario omnipotente, se dividirá este en varios subroles, dependiendo de las responsabilidades de cada administrador.
@@ -350,19 +350,19 @@ Subroles de administrador:
  - Admin de consultas: Lee y responde a las consultas de los usuarios.
  - Admin de usuarios: Gestiona a los usuarios, da de alta/baja cuentas, y puede cambiar los roles de otros usuarios.
  - Administradores de la BD: 
-    - Mantenimiento: Realiza tareas de mantenimiento rutinario en la base de datos, como actualización de estadísticas, reorganización de índices y limpieza de registros de logs.
-    - Backup: Gestiona los respaldos y la restauración de la base de datos, asegurando la recuperación de datos en caso de fallos.
-    - Auditoria: Supervisa las actividades en la base de datos, centrado en la seguridad y el cumplimiento de las políticas de acceso.
-    - Seguridad: Administra la seguridad de la base de datos, gestionando usuarios, roles y permisos de acceso para proteger los datos.
+     - Mantenimiento: Realiza tareas de mantenimiento rutinario en la base de datos, como actualización de estadísticas, reorganización de índices y limpieza de registros de logs.
+     - Backup: Gestiona los respaldos y la restauración de la base de datos, asegurando la recuperación de datos en caso de fallos.
+     - Auditoria: Supervisa las actividades en la base de datos, centrado en la seguridad y el cumplimiento de las políticas de acceso.
+     - Seguridad: Administra la seguridad de la base de datos, gestionando usuarios, roles y permisos de acceso para proteger los datos.
 
 Rol 1: admin_productos
 Este rol puede gestionar productos.
 
 Permisos:
 -	SELECT, INSERT, UPDATE, DELETE en las tablas:
-   -	Product: para gestionar productos.
-   -	Product_image: para gestionar las imágenes de los productos.
-   -	Product_category: para añadir o modificar categorías de productos.
+     -	Product: para gestionar productos.
+     -	Product_image: para gestionar las imágenes de los productos.
+     -	Product_category: para añadir o modificar categorías de productos.
 
 Rol 2: admin_consultas
 Este rol gestiona las consultas de usuarios y marca las consultas como leídas o respondidas.
