@@ -89,7 +89,8 @@ CREATE TABLE Product
   product_status INT NOT NULL,
   id_category INT NOT NULL,
   CONSTRAINT PK_product_id PRIMARY KEY (product_id),
-  CONSTRAINT FK_product_id_id_category FOREIGN KEY (id_category) REFERENCES Product_category(category_id)
+  CONSTRAINT FK_product_id_id_category FOREIGN KEY (id_category) REFERENCES Product_category(category_id),
+  CONSTRAINT CK_product_price CHECK (product_price >= 0)
 );
 go
 
@@ -179,6 +180,7 @@ CREATE TABLE Sale_detail
   CONSTRAINT CK_price_detail CHECK (price_detail >= 0)
 );
 go
+
 
 /*
 USE master;
