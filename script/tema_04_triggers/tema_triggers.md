@@ -27,6 +27,7 @@ Para definir un trigger en SQL, se deben seguir dos pasos fundamentales:
 La sintaxis básica para crear un trigger en SQL es la siguiente:
 
 -- Creación del trigger en SQL
+```sql
 CREATE
     [DEFINER = { usuario | CURRENT_USER }]  -- Especifica el usuario que define el trigger
     TRIGGER nombre_del_trigger              -- Nombre que se asignará al trigger
@@ -34,7 +35,7 @@ CREATE
     ON nombre_tabla FOR EACH ROW           -- La tabla en la que se activa el trigger
     [orden_trigger]                        -- Orden de ejecución en caso de múltiples triggers
     cuerpo_del_trigger                     -- El bloque de código que contiene las acciones del trigger
-
+```
 ## Eventos que Desencadenan Triggers
 
 Un trigger puede responder a los siguientes eventos en una tabla:
