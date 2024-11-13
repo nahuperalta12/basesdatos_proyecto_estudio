@@ -346,9 +346,14 @@ Permisos:
 El administrador tiene un conjunto de permisos más amplios, ya que administra tanto los productos como a los usuarios y las consultas. Para no tener un usuario omnipotente, se dividirá este en varios subroles, dependiendo de las responsabilidades de cada administrador.
 
 Subroles de administrador:
-- Admin de productos: Maneja la gestión de los productos, como agregar, editar, o dar de baja/alta productos.
-- Admin de consultas: Lee y responde a las consultas de los usuarios.
-- Admin de usuarios: Gestiona a los usuarios, da de alta/baja cuentas, y puede cambiar los roles de otros usuarios.
+ - Admin de productos: Maneja la gestión de los productos, como agregar, editar, o dar de baja/alta productos.
+ - Admin de consultas: Lee y responde a las consultas de los usuarios.
+ - Admin de usuarios: Gestiona a los usuarios, da de alta/baja cuentas, y puede cambiar los roles de otros usuarios.
+ - Administradores de la BD: 
+  - Mantenimiento: Realiza tareas de mantenimiento rutinario en la base de datos, como actualización de estadísticas, reorganización de índices y limpieza de registros de logs.
+  - Backup: Gestiona los respaldos y la restauración de la base de datos, asegurando la recuperación de datos en caso de fallos.
+  - Auditoria: Supervisa las actividades en la base de datos, centrado en la seguridad y el cumplimiento de las políticas de acceso.
+  - Seguridad: Administra la seguridad de la base de datos, gestionando usuarios, roles y permisos de acceso para proteger los datos.
 
 Rol 1: admin_productos
 Este rol puede gestionar productos.
@@ -428,10 +433,10 @@ Permisos:
  - admin_productos: Gestiona productos.
  - admin_consultas: Gestiona consultas de usuarios.
  - admin_usuarios: Gestiona usuarios y roles.
- - admin_mantenimiento_rol: Realiza tareas de mantenimiento rutinario en la base de datos, como actualización de estadísticas, reorganización de índices y limpieza de registros de logs.
- - admin_backup_rol: Gestiona los respaldos y la restauración de la base de datos, asegurando la recuperación de datos en caso de fallos.
- - admin_auditoria_rol: Supervisa las actividades en la base de datos, centrado en la seguridad y el cumplimiento de las políticas de acceso.
- - admin_seguridad_rol: Administra la seguridad de la base de datos, gestionando usuarios, roles y permisos de acceso para proteger los datos.
+ - admin_mantenimiento: Realiza tareas de mantenimiento rutinario en la base de datos, como actualización de estadísticas, reorganización de índices y limpieza de registros de logs.
+ - admin_backup: Gestiona los respaldos y la restauración de la base de datos, asegurando la recuperación de datos en caso de fallos.
+ - admin_auditoria: Supervisa las actividades en la base de datos, centrado en la seguridad y el cumplimiento de las políticas de acceso.
+ - admin_seguridad: Administra la seguridad de la base de datos, gestionando usuarios, roles y permisos de acceso para proteger los datos.
 
 ### Consideraciones teóricas:
 Modelo RBAC (Role-Based Access Control): Los roles y permisos se organizan con base en funciones organizacionales, permitiendo una asignación centralizada de permisos. Es una metodología eficiente para gestionar permisos en entornos complejos, evitando la asignación individual a cada usuario.
