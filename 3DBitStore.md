@@ -274,10 +274,82 @@ Los triggers de seguridad, por otro lado, mostraron ser efectivos al impedir eli
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA 
 
 
- **a) Cómo se realizó el Trabajo Práctico**
+ **Descripción de la Metodología y Ejecución del Trabajo Práctico**
 
+El objetivo de este trabajo fue desarrollar una base de datos que permita gestionar eficientemente un sistema de venta de archivos STL para impresión 3D, así como integrar funcionalidades específicas de seguridad, accesos y gestión de usuarios.
 
- **b) Herramientas (Instrumentos y procedimientos)**
+a. Descripción de cómo se realizó el Trabajo Práctico
+
+El trabajo se llevó a cabo en una serie de etapas, cada una con objetivos claros y específicos para garantizar el desarrollo exitoso de la base de datos.
+
+1. Fase de Diseño Conceptual
+   En esta fase inicial, se dedicó tiempo a comprender los requisitos del sistema 3dBitStore, lo que implicó identificar los tipos de datos a almacenar, como los productos (archivos STL), usuarios y roles, entre otros. Se definieron las entidades principales y sus relaciones, teniendo en cuenta la importancia de la seguridad y la correcta gestión de los permisos de los usuarios.
+   
+   - Definición de entidades: Productos (archivos STL), usuarios, roles, transacciones, entre otros.
+   - Relaciones entre entidades: Definir cómo interactúan los productos con los usuarios, cómo se realizan las compras y cómo se gestionan los permisos de acceso a cada tipo de dato.
+
+2. Fase de Diseño Lógico y Creación de Esquema de Base de Datos:
+   En esta fase, se tradujo el modelo conceptual en un modelo lógico. Esto implicó la creación de tablas con sus respectivas claves primarias, foráneas y la definición de las restricciones necesarias para garantizar la integridad de los datos. Se incluyó la creación de índices y las vistas para facilitar consultas rápidas sobre productos, usuarios y transacciones.
+
+   - Creación de tablas: Productos, Usuarios, Roles, Transacciones, entre otros.
+   - Definición de claves y restricciones: Asegurar que las relaciones entre las tablas sean correctas y eficientes.
+   - Planificación de la seguridad: Se definieron roles y permisos para limitar el acceso a ciertas tablas según el tipo de usuario (por ejemplo, roles de administrador, comprador, etc.).
+
+3. Fase de Implementación de Funcionalidades de Seguridad:
+   En esta etapa, se enfocó en la implementación de la gestión de usuarios y permisos a nivel de roles. Se crearon los roles para los distintos tipos de usuarios del sistema (administrador, cliente, etc.), y se asignaron permisos adecuados para cada uno de estos roles, de acuerdo con los requisitos de seguridad del sistema.
+
+   - Creación de roles y asignación de permisos: Se definieron roles de administrador, cliente y soporte técnico, asignando permisos de acceso y modificación de datos según la necesidad de cada rol.
+   - Pruebas de permisos y seguridad: Se realizó una serie de pruebas para verificar que los usuarios solo pudieran acceder y modificar los datos que les correspondían, asegurando la protección de la información sensible.
+
+4. Fase de Implementación de Funciones y Procedimientos Almacenados:
+   Se desarrollaron funciones y procedimientos almacenados para automatizar tareas repetitivas, como la consulta de productos disponibles, la gestión de transacciones y la actualización de inventarios. Esto permitió optimizar el rendimiento de la base de datos y la facilidad de uso para los usuarios.
+
+   - Funciones almacenadas para consultas y gestión de inventarios.
+   - Procedimientos para registrar compras y actualizar la base de datos.
+
+5. Fase de Pruebas y Validación:
+   Una vez implementada la base de datos, se realizaron pruebas exhaustivas para asegurarse de que todas las funcionalidades trabajaran correctamente. Esto incluyó la verificación de la integridad de los datos, el correcto manejo de los permisos de usuario, y el rendimiento general de las consultas y transacciones.
+
+   - Pruebas de usuarios y roles: Verificación del comportamiento de usuarios con diferentes roles al interactuar con la base de datos.
+   - Pruebas de rendimiento: Análisis de las consultas más frecuentes y ajuste de los índices para asegurar la eficiencia del sistema.
+   
+6. Fase de Documentación y Conclusión:
+   En la fase final, se documentaron todos los pasos realizados durante el proceso de desarrollo de la base de datos, desde la concepción inicial hasta la implementación final. Además, se escribieron las conclusiones sobre las dificultades encontradas durante el proceso y cómo se resolvieron.
+
+   - Documentación del modelo de base de datos y procesos.
+   - Conclusiones sobre el trabajo realizado y lecciones aprendidas.
+
+**Dificultades Encontradas**
+
+A lo largo del desarrollo de este trabajo, se presentaron varios desafíos que fueron superados mediante la investigación y colaboración entre los miembros del equipo. Algunas de las principales dificultades fueron:
+
+- Manejo de permisos a nivel de usuarios: La correcta asignación de permisos según roles fue un reto, ya que involucraba una gestión precisa de accesos a tablas y funciones específicas.
+- Optimización de consultas: La base de datos debía manejar grandes cantidades de productos y transacciones, por lo que se requirió optimizar las consultas para garantizar tiempos de respuesta rápidos.
+- Integración de procedimientos y funciones: El diseño e implementación de procedimientos almacenados y funciones requería un entendimiento detallado de los flujos de trabajo del sistema para automatizar tareas correctamente.
+
+**Herramientas (Instrumentos y Procedimientos)**
+
+Para la realización de este trabajo práctico, se utilizaron una serie de herramientas y procedimientos que facilitaron tanto el desarrollo técnico de la base de datos como la recopilación de información y documentación auxiliar. A continuación, se detallan las principales herramientas y métodos empleados:
+
+1. Git y GitHub: 
+   Se utilizó Git como sistema de control de versiones para gestionar y registrar los cambios realizados en el proyecto a lo largo del tiempo. GitHub fue la plataforma elegida para almacenar y compartir el código y los archivos relacionados con la base de datos, lo que facilitó la colaboración entre los miembros del equipo y permitió realizar un seguimiento detallado de los avances y cambios. Además, GitHub proporcionó un espacio centralizado para la revisión y documentación del trabajo.
+
+2. SQL Server Management Studio (SSMS):
+   Para el desarrollo y gestión de la base de datos, se utilizó SQL Server Management Studio (SSMS). Esta herramienta permitió crear y gestionar las tablas, realizar consultas, configurar procedimientos almacenados, asignar roles y permisos, y probar el rendimiento de la base de datos. SSMS fue crucial para la implementación de la base de datos *3dBitStore*, dado su soporte robusto para SQL Server y sus características avanzadas para la administración de bases de datos.
+
+3. StackEdit.io
+   Para la creación de documentación, especialmente diagramas y textos explicativos, se utilizó StackEdit.io, una plataforma en línea que facilitó la escritura colaborativa. En este entorno se redactaron los detalles técnicos del diseño de la base de datos, junto con las explicaciones necesarias para la implementación de las funcionalidades del sistema.
+
+4. Draw.io:
+   Para crear diagramas de casos de uso, se utilizó Draw.io. Esta herramienta permitió representar de forma gráfica los procesos del sistema, mostrando cómo interactúan los usuarios con la base de datos y describiendo los flujos de información a lo largo del sistema. Esto resultó útil para visualizar los requisitos funcionales y mejorar la comprensión del proyecto en su conjunto.
+
+5. ERDPlus
+   Para la creación de diagramas de entidad-relación (ERD), se utilizó ERDPlus, que proporcionó un entorno intuitivo para diseñar y visualizar las relaciones entre las entidades de la base de datos. Esta herramienta fue clave para representar de manera precisa las tablas y sus relaciones, garantizando que la estructura del sistema fuera eficiente y coherente.
+
+6. ChatGPT y Google Academy: 
+   Durante el desarrollo del proyecto, se recurrió a ChatGPT para obtener explicaciones y ejemplos sobre conceptos técnicos, así como para resolver dudas en la implementación. Además, Google Academy se utilizó como fuente auxiliar para la revisión bibliográfica y la búsqueda de artículos académicos y fuentes especializadas que proporcionaran un respaldo teórico para los procedimientos empleados en el trabajo.
+
+A través de estas herramientas y métodos, se logró desarrollar una base de datos eficiente y segura, al mismo tiempo que se garantizaron buenas prácticas en el diseño y la documentación del proyecto. Estas herramientas fueron esenciales para garantizar la calidad y la coherencia en cada una de las etapas del trabajo práctico.
 
 
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
