@@ -544,7 +544,11 @@ Auditoría y control: Al tener roles definidos, se pueden auditar fácilmente la
 
 ## CAPÍTULO V: CONCLUSIONES
 
+El diseño e implementación de la base de datos para la tienda virtual de archivos de impresión 3D ha logrado cumplir con los objetivos de eficiencia, seguridad y escalabilidad. Se implementaron roles y permisos para garantizar el acceso controlado a la información, lo que asegura que solo los usuarios autorizados puedan modificar datos sensibles. La optimización de consultas mediante índices ha mejorado significativamente el rendimiento del sistema, permitiendo manejar grandes volúmenes de datos sin comprometer la velocidad de respuesta.
 
+Además, los triggers han sido fundamentales para mantener la integridad de los datos, registrando las operaciones de modificación y previniendo eliminaciones no autorizadas en tablas sensibles. La flexibilidad para desactivar temporalmente los triggers en situaciones excepcionales añade un nivel extra de control.
+
+Esta experiencia ha sido muy gratificante, ya que no solo permitió resolver problemas prácticos relacionados con la gestión de bases de datos, sino que también amplió mis conocimientos en áreas clave como seguridad, optimización y control de acceso. El proyecto ha demostrado que es posible crear un sistema robusto y seguro que, además de ser eficiente, pueda escalar con el crecimiento del negocio.
 
 ## BIBLIOGRAFÍA DE CONSULTA
 
