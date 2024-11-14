@@ -1,5 +1,5 @@
 /* Optimización de consultas a través de índices */
-
+CREATE DATABASE;
 USE indices_db;
 
 -- Crear tabla de ventas con índices optimizados
