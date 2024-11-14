@@ -9,17 +9,17 @@ CREATE TABLE Sales (
     total_amount DECIMAL(10, 2)
 );
 
+-- Tabla temporal para generación masiva de datos
+CREATE TABLE #TempSales (sale_date DATE, total_amount DECIMAL(10, 2));
+
 -- Inserción masiva de 1 millón de registros de ventas
 DECLARE @EndDate DATETIME = '2024-12-31';
 DECLARE @StartDate DATETIME = DATEADD(DAY, -365, @EndDate);
 DECLARE @RecordCount INT = 1000000;
 
--- Tabla temporal para generación masiva de datos
-CREATE TABLE #TempSales (sale_date DATE, total_amount DECIMAL(10, 2));
-
 -- Bucle para generar datos aleatorios
 DECLARE @i INT = 1;
-WHILE @i <= @RecordCount  
+WHILE @i <= @RecordCount  --hasta 1 millon
 BEGIN
     DECLARE @RandomDays INT = FLOOR(RAND() * DATEDIFF(DAY, @StartDate, @EndDate));
     DECLARE @SaleDate DATE = DATEADD(DAY, @RandomDays, @StartDate);
@@ -45,7 +45,7 @@ SET STATISTICS IO ON;
 
 SELECT sale_id, sale_date, total_amount
 FROM Sales
-WHERE sale_date BETWEEN '2024-01-01' AND '2024-02-01'
+WHERE sale_date BETWEEN '2024-09-01' AND '2024-10-01'
 ORDER BY sale_date ASC;
 
 SET STATISTICS TIME OFF;
